@@ -9,7 +9,7 @@ export default function QuemSomosPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* 1. HERO SECTION */}
-      {/* INSTRUÇÃO: Passe um link de vídeo em videoSrc="..." para ativar o vídeo de fundo. */}
+      {/* INSTRUÇÃO: Passe um link de vídeo em videoSrc="..." para ativar o vídeo de fundo.. */}
       <HeroSection
         title="Quem somos"
         subtitle="Frase de impacto que resume a essência da empresa."
