@@ -16,26 +16,25 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16 relative">
           {/* Brand Info */}
           <div className="lg:col-span-4 flex flex-col items-start">
-            <div className="bg-foreground text-background font-bold px-5 py-2.5 text-2xl inline-block rounded-md mb-6">
+            <div className="bg-background text-foreground font-bold px-5 py-2.5 text-2xl inline-block rounded-md mb-6">
               LOGO
             </div>
             <p className="text-primary-foreground/80 text-sm leading-relaxed max-w-sm mb-6">
-              Transformando resultados com estratégias inteligentes e escaláveis
-              para o seu negócio decole de verdade.
+              Transformando resultados com estratégias inteligentes e escaláveis para o seu negócio decole de verdade.
             </p>
             {/* Social Icons */}
             <div className="flex gap-3">
               {[
-                { icon: FaInstagram, label: "Instagram" },
-                { icon: MessageCircle, label: "WhatsApp" },
-                { icon: Mail, label: "E-mail" },
-                { icon: Globe, label: "Website" },
+                { icon: FaInstagram, label: "Instagram", href: "#" },
+                { icon: MessageCircle, label: "WhatsApp", href: "#" },
+                { icon: Mail, label: "E-mail", href: "#" },
+                { icon: Globe, label: "Website", href: "#" },
               ].map((Social, index) => (
                 <Link
                   key={index}
-                  href="#"
+                  href={Social.href}
                   aria-label={Social.label}
-                  className="p-2.5 bg-background border border-border rounded-full text-muted-foreground hover:text-primary hover:border-primary hover:-translate-y-1 transition-all duration-300 shadow-sm"
+                  className="p-2.5 bg-background border border-border rounded-full text-muted-foreground hover:text-primary hover:border-white hover:-translate-y-1 transition-all duration-300 shadow-sm"
                 >
                   <Social.icon className="w-4 h-4" />
                 </Link>
@@ -45,14 +44,14 @@ export function Footer() {
 
           {/* Links Columns */}
           <div className="lg:col-span-2 lg:col-start-6">
-            <h4 className="text-foreground font-semibold mb-6">Serviços</h4>
+            <h4 className="text-white font-semibold mb-6">Serviços</h4>
             <ul className="space-y-4 text-sm text-primary-foreground/80">
               {["Consultoria", "Assessoria", "Treinamentos", "Diagnóstico"].map(
                 (item) => (
                   <li key={item}>
                     <Link
                       href="#"
-                      className="hover:text-primary hover:underline underline-offset-4 transition-all"
+                      className="hover:text-white hover:underline underline-offset-4 transition-all"
                     >
                       {item}
                     </Link>
@@ -63,12 +62,12 @@ export function Footer() {
           </div>
 
           <div className="lg:col-span-2">
-            <h4 className="text-foreground font-semibold mb-6">Empresa</h4>
+            <h4 className="text-white font-semibold mb-6">Empresa</h4>
             <ul className="space-y-4 text-sm text-primary-foreground/80">
               <li>
                 <Link
                   href="/quem-somos"
-                  className="hover:text-primary hover:underline underline-offset-4 transition-all"
+                  className="hover:text-white hover:underline underline-offset-4 transition-all"
                 >
                   Quem somos
                 </Link>
@@ -76,7 +75,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/contato"
-                  className="hover:text-primary hover:underline underline-offset-4 transition-all"
+                  className="hover:text-white hover:underline underline-offset-4 transition-all"
                 >
                   Contato
                 </Link>
@@ -84,7 +83,7 @@ export function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="hover:text-primary hover:underline underline-offset-4 transition-all"
+                  className="hover:text-white hover:underline underline-offset-4 transition-all"
                 >
                   Carreiras
                 </Link>
@@ -93,7 +92,7 @@ export function Footer() {
           </div>
 
           <div className="lg:col-span-3">
-            <h4 className="text-foreground font-semibold mb-6">
+            <h4 className="text-white font-semibold mb-6">
               Contato e Local
             </h4>
             <ul className="space-y-4 text-sm text-primary-foreground/80">
@@ -104,8 +103,8 @@ export function Footer() {
                 <br />
                 Niterói - RJ
               </li>
-              <li className="pt-2 border-t border-border/50">
-                <span className="block font-medium text-foreground mb-1">
+              <li className="pt-2 border-t border-primary-foreground/20">
+                <span className="block font-medium text-white mb-1">
                   CNPJ
                 </span>
                 99.999.999/9999-99
@@ -115,25 +114,24 @@ export function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-border text-sm text-muted-foreground gap-4">
+        <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-primary-foreground/20 text-sm text-primary-foreground/60 gap-4">
           <p>
-            &copy; {new Date().getFullYear()} LOGO. Todos os direitos
-            reservados.
+            &copy; {new Date().getFullYear()} LOGO. Todos os direitos reservados.
           </p>
           <div className="flex items-center gap-6">
-            <Link href="#" className="hover:text-foreground transition-colors">
+            <Link href="#" className="hover:text-white transition-colors">
               Política de Privacidade
             </Link>
-            <span className="hidden md:inline-block">|</span>
+            <span className="hidden md:inline-block text-primary-foreground/20">|</span>
             <p className="hidden md:block">
               Site desenvolvido por{" "}
-              <span className="font-semibold text-foreground">
+              <span className="font-semibold text-white">
                 Meta Consultoria
               </span>
             </p>
             <button
               onClick={scrollToTop}
-              className="ml-4 p-2.5 bg-foreground text-background rounded-full hover:bg-primary transition-all duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
+              className="ml-4 p-2.5 bg-background text-primary rounded-full hover:bg-white hover:scale-110 transition-all duration-300 shadow-md hover:shadow-lg focus:outline-none cursor-pointer"
               aria-label="Voltar ao topo"
             >
               <ChevronUp className="w-5 h-5" />
