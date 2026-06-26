@@ -1,60 +1,74 @@
+/* 1. TODOS OS IMPORTS NO TOPO ABSOLUTO */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 @import "tailwindcss";
 @plugin "tailwindcss-animate";
 @config "../tailwind.config.ts";
 
+/* 2. AGORA VEM AS CAMADAS DO TAILWIND E REGRAS BASE */
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --background: 0 0% 100%; /* Branco */
+    
+    /* TEXTO PRINCIPAL: Preto Carbono (#1A1A1A) -> HSL: 0 0% 10.2% */
+    --foreground: 0 0% 10.2%; 
 
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 0 0% 10.2%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
+    --popover-foreground: 0 0% 10.2%;
 
-    /* Cor Primária da Marca - Alterar aqui para mudar o tema do cliente */
-    --primary: 164 29% 31%;
+    /* COR PRIMÁRIA: Azul Destaques (#1A4E78) -> HSL: 207 50% 28.2% */
+    --primary: 207 50% 28.2%;
     --primary-foreground: 0 0% 100%;
 
-    /* Cor Secundária */
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
+    /* COR SECUNDÁRIA: Azul Logo (#0A3455) -> HSL: 207 79% 18.6% */
+    --secondary: 207 79% 18.6%;
+    --secondary-foreground: 0 0% 100%;
 
-    /* Cores de Feedback e Neutras */
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 164 29% 90%;
-    --accent-foreground: 164 29% 20%;
+    /* TEXTO SECUNDÁRIO: Cinza Neutro (#666666) -> HSL: 0 0% 40% */
+    --muted-foreground: 0 0% 40%;
+    --muted: 214 32% 97.1%;
+
+    /* FUNDO SECUNDÁRIO: Cinza Claro (#F5F7FA) -> HSL: 214 32% 97.1% */
+    --accent: 214 32% 97.1%;
+    --accent-foreground: 207 79% 18.6%;
+
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 164 29% 31%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 207 50% 28.2%;
 
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 240 10% 3.9%;
+    --background: 207 79% 10%;
     --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
+    --card: 207 79% 12%;
     --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
+    --popover: 207 79% 12%;
     --popover-foreground: 0 0% 98%;
-    --primary: 164 29% 45%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
+    
+    --primary: 207 50% 38%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 207 79% 18.6%;
+    --secondary-foreground: 0 0% 100%;
+    
+    --muted: 207 40% 18%;
+    --muted-foreground: 0 0% 65%;
+    
+    --accent: 207 40% 18%;
     --accent-foreground: 0 0% 98%;
+    
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 164 29% 45%;
+    
+    --border: 207 40% 20%;
+    --input: 207 40% 20%;
+    --ring: 207 50% 38%;
   }
 }
 
@@ -64,5 +78,6 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: 'Roboto', sans-serif;
   }
 }
