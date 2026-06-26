@@ -6,7 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.sitedocliente.com.br";
 
   // 1. Mapeia as rotas estáticas
-  const staticRoutes = ["", "/quem-somos", "/servicos", "/contato"].map(
+  const staticRoutes = ["", "/quem-somos", "/servicos", "/contato", "/faq"].map(
     (route) => ({
       url: `${baseUrl}${route}`,
       lastModified: new Date().toISOString().split("T")[0],

@@ -9,6 +9,7 @@ export const navLinks = [
   { name: "Quem somos", href: "/quem-somos" },
   { name: "Serviços", href: "/servicos" },
   { name: "Contato", href: "/contato" },
+  {name: "FAQ", href: "/faq"},
 ];
 
 export function Header() {
