@@ -1,44 +1,35 @@
+import { BlogGrid } from "./components/BlogGrid";
+import { BlogHero } from "./components/BlogHero";
+import { CategoryFilter } from "./components/CategoryFilter";
+import { EmptyState } from "./components/EmptyState";
+import { SearchBar } from "./components/SearchBar";
+
 import { POSTS_QUERY } from "@/sanity/lib/queries";
 import { sanityFetch } from "@/sanity/lib/live";
 import { Post } from "@/sanity/lib/types";
-import { PostCard } from "./components/PostCard";
 
 export default async function BlogPage() {
-  const { data: posts } = await sanityFetch({
+  const { data } = await sanityFetch({
     query: POSTS_QUERY,
   });
 
+  const posts = (data ?? []) as Post[]
+
   return (
-    <main className="mx-auto max-w-6xl px-6 py-12">
-      <header className="mb-12">
-        <h1 className="text-4xl font-bold">Blog</h1>
+    <>
+      <BlogHero />
 
-        <p className="mt-4 max-w-2xl text-gray-600">
-          Conteúdos sobre seguros, proteção financeira e informações importantes
-          para ajudar você a tomar decisões mais seguras.
-        </p>
-      </header>
+      <main className="mx-auto max-w-7xl space-y-10 px-6 py-16">
+        <SearchBar />
 
-      {posts?.length ? (
-        <section className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post: Post) => (
-            <PostCard
-              key={post._id}
-              post={post}
-            />
-          ))}
-        </section>
-      ) : (
-        <div className="rounded-xl border border-dashed p-10 text-center">
-          <h2 className="text-2xl font-semibold">
-            Nenhum artigo encontrado
-          </h2>
+        <CategoryFilter />
 
-          <p className="mt-2 text-gray-500">
-            Assim que novos conteúdos forem publicados, eles aparecerão aqui.
-          </p>
-        </div>
-      )}
-    </main>
+        {posts?.length ? (
+          <BlogGrid posts={posts as Post[]} />
+        ) : (
+          <EmptyState />
+        )}
+      </main>
+    </>
   );
 }
