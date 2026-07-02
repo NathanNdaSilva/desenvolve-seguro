@@ -1,46 +1,67 @@
-import {UserIcon} from '@sanity/icons'
-import {defineArrayMember, defineField, defineType} from 'sanity'
+import { UserIcon } from "@sanity/icons";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
 export const authorType = defineType({
-  name: 'author',
-  title: 'Author',
-  type: 'document',
+  name: "author",
+  title: "Autor",
+  type: "document",
   icon: UserIcon,
+
   fields: [
     defineField({
-      name: 'name',
-      type: 'string',
+      name: "name",
+      title: "Nome",
+      type: "string",
+      validation: (Rule) => Rule.required(),
     }),
+
     defineField({
-      name: 'slug',
-      type: 'slug',
+      name: "slug",
+      title: "Slug",
+      type: "slug",
       options: {
-        source: 'name',
+        source: "name",
+        maxLength: 96,
       },
+      validation: (Rule) => Rule.required(),
     }),
+
     defineField({
-      name: 'image',
-      type: 'image',
+      name: "image",
+      title: "Foto",
+      type: "image",
       options: {
         hotspot: true,
       },
     }),
+
     defineField({
-      name: 'bio',
-      type: 'array',
+      name: "role",
+      title: "Cargo",
+      type: "string",
+      description: "Ex.: Corretor de Seguros, Especialista em Seguro de Vida.",
+    }),
+
+    defineField({
+      name: "bio",
+      title: "Biografia",
+      type: "array",
       of: [
         defineArrayMember({
-          type: 'block',
-          styles: [{title: 'Normal', value: 'normal'}],
+          type: "block",
+          styles: [{ title: "Normal", value: "normal" }],
           lists: [],
         }),
       ],
+      description: "Breve apresentação do autor.",
     }),
   ],
+
   preview: {
     select: {
-      title: 'name',
-      media: 'image',
+      title: "name",
+      subtitle: "role",
+      media: "image",
     },
   },
-})
+});
