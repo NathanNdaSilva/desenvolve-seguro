@@ -4,9 +4,13 @@ import { Post } from "@/sanity/lib/types";
 import { PostCard } from "./components/PostCard";
 
 export default async function BlogPage() {
-  const { data: posts } = await sanityFetch({
+  // 1. Buscamos a resposta bruta do Sanity
+  const response = await sanityFetch({
     query: POSTS_QUERY,
   });
+
+  // 2. Extraímos os dados e dizemos ao TypeScript que se trata de um array de Posts do tipo correto
+  const posts = (response?.data || []) as Post[];
 
   return (
     <main className="mx-auto max-w-6xl px-6 py-12">
@@ -22,17 +26,12 @@ export default async function BlogPage() {
       {posts?.length ? (
         <section className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {posts.map((post: Post) => (
-            <PostCard
-              key={post._id}
-              post={post}
-            />
+            <PostCard key={post._id} post={post} />
           ))}
         </section>
       ) : (
         <div className="rounded-xl border border-dashed p-10 text-center">
-          <h2 className="text-2xl font-semibold">
-            Nenhum artigo encontrado
-          </h2>
+          <h2 className="text-2xl font-semibold">Nenhum artigo encontrado</h2>
 
           <p className="mt-2 text-gray-500">
             Assim que novos conteúdos forem publicados, eles aparecerão aqui.

@@ -30,20 +30,14 @@ export function PostCard({ post }: PostCardProps) {
           </span>
         )}
 
-        <h2 className="line-clamp-2 text-2xl font-bold">
-          {post.title}
-        </h2>
+        <h2 className="line-clamp-2 text-2xl font-bold">{post.title}</h2>
 
-        <p className="line-clamp-3 text-gray-600">
-          {post.excerpt}
-        </p>
+        <p className="line-clamp-3 text-gray-600">{post.excerpt}</p>
 
         <div className="flex items-center justify-between text-sm text-gray-500">
           <span>{formattedDate}</span>
 
-          {post.readingTime && (
-            <span>{post.readingTime} min de leitura</span>
-          )}
+          {post.readingTime && <span>{post.readingTime} min de leitura</span>}
         </div>
 
         <Link
