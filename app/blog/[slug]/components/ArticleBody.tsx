@@ -1,7 +1,7 @@
 import { PortableText } from "@portabletext/react";
 
 import { Post } from "@/sanity/lib/types";
-import { portableTextComponents } from "@/components/blog/PortableTextComponents";
+import { portableTextComponents } from "@/app/blog/components/PortableTextComponents";
 
 interface ArticleBodyProps {
   post: Post;
