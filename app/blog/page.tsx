@@ -2,14 +2,51 @@ import { POSTS_QUERY } from "@/sanity/lib/queries";
 import { sanityFetch } from "@/sanity/lib/live";
 import { Post } from "@/sanity/lib/types";
 import { PostCard } from "./components/PostCard";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Blog | Rhema Corretora de Seguros",
+  description:
+    "Acompanhe o blog da Rhema com artigos sobre proteção em vida, planejamento sucessório, blindagem patrimonial e novidades do mercado de seguros.",
+  alternates: {
+    canonical: "/blog",
+  },
+  openGraph: {
+    title: "Blog | Rhema Corretora de Seguros",
+    description: "Artigos sobre proteção em vida, planejamento sucessório e blindagem patrimonial.",
+    url: "/blog",
+    siteName: "Rhema Corretora de Seguros",
+    images: [
+      {
+        url: "/logo_rhema.png",
+        width: 1200,
+        height: 630,
+        alt: "Blog Rhema",
+      },
+    ],
+    locale: "pt_BR",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  authors: [{ name: "Rhema Corretora de Seguros" }],
+  keywords: "blog seguros, planejamento sucessório, blindagem patrimonial, proteção em vida, mercado de seguros",
+};
 
 export default async function BlogPage() {
-  // 1. Buscamos a resposta bruta do Sanity
   const response = await sanityFetch({
     query: POSTS_QUERY,
   });
 
-  // 2. Extraímos os dados e dizemos ao TypeScript que se trata de um array de Posts do tipo correto
   const posts = (response?.data || []) as Post[];
 
   return (

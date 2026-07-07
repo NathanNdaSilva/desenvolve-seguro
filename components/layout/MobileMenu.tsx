@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Globe, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -63,15 +63,17 @@ export function MobileMenu({ navLinks }: { navLinks: NavLink[] }) {
             <div className="mt-auto flex flex-col gap-6 pb-8 pt-8 border-t border-border">
               <button className="flex items-center gap-4 text-muted-foreground hover:text-primary transition-colors text-lg">
                 <div className="p-2 bg-muted rounded-full">
-                  <Globe className="h-5 w-5" />
+                  <Menu className="h-5 w-5" />
                 </div>
                 <span>Mudar Idioma</span>
               </button>
               
               <SheetClose asChild>
-                <Button size="lg" className="w-full rounded-xl text-lg h-14 shadow-md">
-                  Diagnóstico Gratuito
-                </Button>
+                <Link href="/cotacao" className="w-full">
+                  <Button size="lg" className="w-full rounded-xl text-lg h-14 shadow-md bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer">
+                    Faça sua cotação
+                  </Button>
+                </Link>
               </SheetClose>
             </div>
           </div>

@@ -1,35 +1,27 @@
 import type { Metadata } from "next";
-import { SanityLive } from "@/sanity/lib/live";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { GoogleTagManager } from "@next/third-parties/google";
+import { Roboto } from "next/font/google";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const roboto = Roboto({
+  weight: ['300', '400', '500', '700', '900'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-roboto',
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-// INSTRUÇÃO PARA O DESENVOLVEDOR:
-// 1. Substitua a URL na variável SITE_URL pela URL real de produção.
-// 2. Altere "NOME DA EMPRESA" e a descrição.
-const SITE_URL = "https://www.sitedocliente.com.br";
+const SITE_URL = "https://www.rhema.com.br";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    template: "%s | NOME DA EMPRESA",
-    default: "NOME DA EMPRESA | Consultoria Especializada",
+    template: "%s | Rhema Corretora de Seguros",
+    default: "Rhema Corretora de Seguros | Proteção em Vida, Saúde e RC",
   },
   description:
-    "Frase de impacto principal que descreve o negócio do cliente. Ideal ter entre 150 e 160 caracteres para não ser cortada no Google.",
-  // A tag keywords foi removida por ser obsoleta no SEO moderno.
+    "Consultoria especializada em seguros de vida, saúde e responsabilidade civil. Proteja sua família e seu patrimônio com a Rhema.",
   authors: [{ name: "Meta Consultoria", url: "https://metaconsultoria.com" }],
   alternates: {
     canonical: "/",
@@ -38,25 +30,25 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pt_BR",
     url: SITE_URL,
-    title: "NOME DA EMPRESA | Consultoria Especializada",
+    title: "Rhema Corretora de Seguros | Proteção Inteligente",
     description:
-      "Frase de impacto principal que descreve o negócio do cliente.",
-    siteName: "NOME DA EMPRESA",
+      "Consultoria especializada em seguros de vida, saúde e responsabilidade civil. Proteja sua família e seu patrimônio.",
+    siteName: "Rhema Corretora de Seguros",
     images: [
       {
-        url: "/images/og-image.jpg",
+        url: "/logo_rhema.png",
         width: 1200,
         height: 630,
-        alt: "Capa Institucional da Empresa",
+        alt: "Rhema Corretora de Seguros",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "NOME DA EMPRESA | Consultoria Especializada",
+    title: "Rhema Corretora de Seguros | Proteção Inteligente",
     description:
-      "Frase de impacto principal que descreve o negócio do cliente.",
-    images: ["/images/og-image.jpg"],
+      "Consultoria especializada em seguros de vida, saúde e responsabilidade civil.",
+    images: ["/logo_rhema.png"],
   },
   robots: {
     index: true,
@@ -71,20 +63,23 @@ export const metadata: Metadata = {
   },
 };
 
-// JSON-LD para o Google entender que o site pertence a uma organização local
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "NOME DA EMPRESA",
+  "@type": "InsuranceBrokerage",
+  name: "Rhema Corretora de Seguros",
   url: SITE_URL,
-  logo: `${SITE_URL}/images/logo.png`,
+  logo: `${SITE_URL}/logo_rhema.png`,
   contactPoint: {
     "@type": "ContactPoint",
-    telephone: "+55-21-99999-9999",
+    telephone: "+55-11-99999-9999",
     contactType: "customer service",
     areaServed: "BR",
     availableLanguage: "Portuguese",
   },
+  sameAs: [
+    "https://www.instagram.com/rhemacorretora",
+    "https://www.linkedin.com/company/rhemacorretora"
+  ]
 };
 
 export default function RootLayout({
@@ -95,21 +90,18 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <head>
-        {/* Injeção do Schema Markup no local correto */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex min-h-screen flex-col font-sans`}>
+      <body className={`${roboto.variable} antialiased flex min-h-screen flex-col font-roboto`}>
         {process.env.NEXT_PUBLIC_GTM_ID && (
           <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
         )}
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
-
-        <SanityLive />
       </body>
     </html>
   );

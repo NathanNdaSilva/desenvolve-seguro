@@ -39,9 +39,9 @@ export function BackgroundVideo({
         autoPlay
         loop
         muted
-        playsInline // Crucial para o vídeo tocar no iOS sem abrir tela cheia
+        playsInline
         poster={poster}
-        className="w-full h-full object-cover"
+        className="w-full h-full object-cover object-[center_45%]"  // ← ADICIONAR
       >
         <source src={src} type="video/mp4" />
         Seu navegador não suporta a tag de vídeo.

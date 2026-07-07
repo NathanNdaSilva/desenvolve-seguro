@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Film } from "lucide-react";
+import Image from "next/image";
 import {
   Carousel,
   CarouselContent,
@@ -7,8 +8,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-// Componentes
-import { HeroSection } from "@/components/sections/HeroSection";
 import { SectionBadge } from "@/components/common/SectionBadge";
 import { ServiceRowCard } from "@/components/common/ServiceRowCard";
 import { SuccessCase } from "@/components/sections/SuccessCase";
@@ -16,85 +15,97 @@ import { Newsletter } from "@/components/sections/Newsletter";
 import { Metadata } from "next";
 import { services } from "@/constants/services";
 import Link from "next/link";
+import Hero from "@/components/Hero"; // <- Importando a nova Hero
 
-// INSTRUÇÃO: A Home Page utiliza o título 'default' do layout.tsx.
-// Define aqui uma descrição com bom SEO pra empresa.
-// Toda página deve ter uma descrição única.
 export const metadata: Metadata = {
+  title: "Rhema Corretora de Seguros | Proteção em Vida, Saúde e RC",
   description:
-    "Descrição principal da empresa. Expliqueo que a empresa faz e qual o seu diferencial de mercado.",
+    "Consultoria especializada em seguros de vida, saúde e responsabilidade civil. Proteja sua família e seu patrimônio com a Rhema. Faça uma simulação online.",
   alternates: {
     canonical: "/",
   },
+  openGraph: {
+    title: "Rhema Corretora de Seguros | Proteção Inteligente",
+    description: "Consultoria especializada em seguros de vida, saúde e responsabilidade civil. Proteja sua família e seu patrimônio.",
+    url: "/",
+    siteName: "Rhema Corretora de Seguros",
+    images: [
+      {
+        url: "/logo_rhema.png",
+        width: 1200,
+        height: 630,
+        alt: "Rhema Corretora de Seguros",
+      },
+    ],
+    locale: "pt_BR",
+    type: "website",
+  },
+  keywords: "seguro de vida, seguro saúde, responsabilidade civil, corretora de seguros, proteção patrimonial, planejamento sucessório",
 };
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
-      {/* 1. HERO SECTION */}
-      {/* INSTRUÇÃO: Passe um link de vídeo em videoSrc="..." para ativar o vídeo de fundo. */}
-      <HeroSection
-        title="Nome da Empresa"
-        subtitle="Muito mais que uma consultoria, o parceiro ideal para o seu crescimento."
-        showArrow
-      />
+      
+      {/* 1. HERO SECTION - NOVA VERSÃO */}
+      <Hero />
 
-      {/* 2. QUEM SOMOS */}
-      <section className="py-24 container mx-auto px-4 md:px-8">
-        <SectionBadge>Quem somos</SectionBadge>
+      {/* 2. QUEM SOMOS - BADGE CLICÁVEL */}
+      <section className="py-16 container mx-auto px-4 md:px-8">
+        <SectionBadge href="/quem-somos">Quem somos</SectionBadge>
 
         <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-          {/* INSTRUÇÃO: Troque a div abaixo pelo componente Image do Next.js contendo a foto institucional. */}
-          <div className="bg-muted/50 aspect-[4/3] rounded-3xl flex items-center justify-center border border-border shadow-inner">
-            <span className="text-muted-foreground font-medium">
-              Imagem/Vídeo Institucional
-            </span>
+          <div className="bg-primary/5 aspect-[4/3] rounded-3xl flex items-center justify-center border border-border shadow-inner overflow-hidden p-6">
+            <div className="relative w-full h-full max-h-[350px]">
+              <Image
+                src="/logo_rhema.png"
+                alt="Rômulo - Fundador da Rhema Corretora de Seguros"
+                fill
+                className="object-contain object-center"
+              />
+            </div>
           </div>
-          <div className="space-y-8">
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Lorem ipsum dolor sit amet. Et optio quod et veritatis voluptatum
-              aut omnis galisum. Aut necessitatibus voluptatum qui aperiam harum
-              a corporis similique. Ut pariatur excepturi qui consectetur
-              dolores qui praesentium.
+          <div className="space-y-6">
+            <p className="text-base md:text-lg text-[#1A1A1A] leading-relaxed">
+              <span className="font-semibold text-primary">Rhema</span>, do grego ῥῆμα, significa "palavra falada" — a revelação específica. 
+              Nós nascemos para trazer a clareza e a direção que você precisa para proteger o que construiu, sob a premissa de que tudo o 
+              que temos é para um propósito maior.
             </p>
-            <Button variant="outline" className="rounded-full px-8">
-              Saiba mais
-            </Button>
+            <Link href="/quem-somos">
+              <Button variant="outline" className="rounded-full px-8 cursor-pointer">
+                Saiba mais
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
 
       {/* 3. VÍDEO E CARROSSEL */}
-      <section className="py-24 relative overflow-hidden bg-gradient-to-r from-primary/90 to-primary/60 text-primary-foreground">
+      <section className="py-16 relative overflow-hidden bg-gradient-to-r from-primary/90 to-primary/60 text-white">
         <div className="container mx-auto px-4 md:px-8 relative z-10">
-          <div className="mb-12 text-center md:text-left">
-            <h2 className="text-3xl md:text-4xl font-bold">Nossos Destaques</h2>
-            <p className="mt-4 opacity-80 max-w-2xl">
-              Acompanhe nossos resultados e o impacto visual que geramos nos
-              projetos.
+          <div className="mb-10 text-center md:text-left">
+            <h2 className="text-2xl md:text-3xl font-bold text-white">Nossos Destaques</h2>
+            <p className="mt-2 text-white/80 max-w-2xl text-sm md:text-base">
+              Acompanhe nossos resultados e o impacto visual que geramos nos projetos.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             {/* COLUNA 1: VÍDEO INLINE */}
-            <div className="w-full aspect-video bg-black/20 backdrop-blur-sm border border-primary-foreground/20 rounded-3xl flex flex-col items-center justify-center relative overflow-hidden shadow-xl">
-              {/* INSTRUCAO PARA O DESENVOLVEDOR: 
-                  Substitua a div interna inteira pela tag <video> com o link do cliente 
-                  ou por um iframe do YouTube/Vimeo. 
-              */}
-              <div className="flex flex-col items-center justify-center text-primary-foreground/70">
-                <Film className="w-12 h-12 mb-4 opacity-50" />
-                <p className="font-medium tracking-widest uppercase text-sm">
-                  Espaco para Video
-                </p>
-              </div>
+            <div className="w-full aspect-video rounded-3xl overflow-hidden shadow-xl border border-white/20">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                controls
+                className="w-full h-full object-cover"
+              >
+                <source src="/media/video_1.mp4" type="video/mp4" />
+                Seu navegador não suporta a tag de vídeo.
+              </video>
             </div>
-
-            {/* COLUNA 2: CARROSSEL SHADCN */}
-            <div className="w-full px-12 lg:px-0">
-              {/* INSTRUCAO: O Carousel abaixo esta configurado para loop infinito. 
-                  Voce pode alterar as opcoes no objeto "opts". 
-              */}
+            <div className="w-full px-8 lg:px-0">
               <Carousel
                 opts={{
                   align: "start",
@@ -103,38 +114,51 @@ export default function Home() {
                 className="w-full"
               >
                 <CarouselContent>
-                  {/* INSTRUCAO: Faca um .map() nas imagens reais do projeto aqui. */}
-                  {[1, 2, 3, 4, 5].map((index) => (
-                    <CarouselItem
-                      key={index}
-                      className="md:basis-1/2 lg:basis-full"
-                    >
+                  {[
+                    { src: "/saude.png", alt: "Responsabilidade Civil - Proteção Jurídica" },
+                    { src: "/rc_1.png", alt: "Responsabilidade Civil - Segurança Empresarial" },
+                    { src: "/vida.png", alt: "Seguro de Vida - Proteção para sua Família" },
+                  ].map((image, index) => (
+                    <CarouselItem key={index} className="md:basis-1/2 lg:basis-full">
                       <div className="p-1">
-                        <div className="flex aspect-video items-center justify-center bg-background/10 backdrop-blur-md border border-primary-foreground/20 rounded-2xl p-6 text-center shadow-sm">
-                          <span className="text-2xl font-semibold">
-                            Imagem {index}
-                          </span>
+                        <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/20 shadow-sm bg-black/10">
+                          <Image
+                            src={image.src}
+                            alt={image.alt}
+                            fill
+                            className="object-cover"
+                          />
                         </div>
                       </div>
                     </CarouselItem>
                   ))}
                 </CarouselContent>
 
-                {/* Botoes de navegacao do carrossel */}
-                <CarouselPrevious className="hidden md:flex -left-4 lg:-left-12 bg-background/20 hover:bg-background/40 border-none text-primary-foreground" />
-                <CarouselNext className="hidden md:flex -right-4 lg:-right-12 bg-background/20 hover:bg-background/40 border-none text-primary-foreground" />
+                <CarouselPrevious className="hidden md:flex -left-2 lg:-left-4 bg-white/20 hover:bg-white/40 border-none text-white cursor-pointer" />
+                <CarouselNext className="hidden md:flex -right-2 lg:-right-4 bg-white/20 hover:bg-white/40 border-none text-white cursor-pointer" />
               </Carousel>
             </div>
+          </div>
+
+          {/* Botão Serviços - apenas um */}
+          <div className="mt-10 text-center">
+            <Link href="/servicos">
+              <Button 
+                variant="secondary" 
+                className="rounded-full px-8 h-11 text-sm bg-white text-primary hover:bg-white/90 transition-all cursor-pointer"
+              >
+                Ver todos os serviços
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* 4. SERVIÇOS */}
-      <section className="py-24 container mx-auto px-4 md:px-8 max-w-5xl">
-        <SectionBadge>Serviços</SectionBadge>
+      {/* 4. SERVIÇOS - BADGE CLICÁVEL */}
+      <section className="py-16 container mx-auto px-4 md:px-8 max-w-5xl">
+        <SectionBadge href="/servicos">Serviços</SectionBadge>
 
-        <div className="flex flex-col gap-6">
-          {/* Renderiza dinamicamente os 3 primeiros serviços da sua constante */}
+        <div className="flex flex-col gap-4">
           {services.slice(0, 3).map((service) => (
             <ServiceRowCard
               key={service.slug}
@@ -144,11 +168,11 @@ export default function Home() {
             />
           ))}
         </div>
-        <div className="mt-12 flex justify-center">
+        <div className="mt-8 flex justify-center">
           <Link href="/servicos">
             <Button
               variant="outline"
-              className="rounded-full px-10 h-12 text-md hover:bg-primary hover:text-primary-foreground transition-all"
+              className="rounded-full px-8 h-11 text-sm hover:bg-primary hover:text-white transition-all cursor-pointer"
             >
               Ver todos os serviços
             </Button>
@@ -156,7 +180,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. E 6. COMPONENTES GLOBAIS */}
+      {/* 5. COMPONENTES GLOBAIS */}
       <SuccessCase />
       <Newsletter />
     </div>
