@@ -112,11 +112,11 @@ export function ContactForm() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="empresa">Empresa</Label>
+              <Label htmlFor="assunto">Tema Principal</Label>
               <Input
-                id="empresa"
-                name="empresa"
-                placeholder="Nome da sua empresa"
+                id="assunto"
+                name="assunto"
+                placeholder="Assunto"
                 className="bg-background h-12 rounded-xl border-border/50 focus-visible:ring-primary/30"
                 disabled={isSubmitting}
               />
