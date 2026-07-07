@@ -59,8 +59,9 @@ export default function Home() {
             <div className="relative w-full h-full max-h-[350px]">
               <Image
                 src="/logo_rhema.png"
-                alt="Rômulo - Fundador da Rhema Corretora de Seguros"
+                alt="Rhema Corretora de Seguros"
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-contain object-center"
               />
             </div>
@@ -126,6 +127,7 @@ export default function Home() {
                             src={image.src}
                             alt={image.alt}
                             fill
+                            sizes="(max-width: 768px) 100vw, 50vw"
                             className="object-cover"
                           />
                         </div>
