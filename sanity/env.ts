@@ -15,7 +15,7 @@ function assertValue<T>(v: T | undefined, errorMessage: string): T {
   if (v === undefined) {
     // throw new Error(errorMessage)
     console.warn('⚠️ ' + errorMessage + ' - Usando valor temporário')
-    return (errorMessage.includes('DATASET') ? 'production' : 'projeto-fake') as T
+    return (errorMessage.includes('DATASET') ? 'production' : '11t8dx2l') as T
   }
   return v
 }
