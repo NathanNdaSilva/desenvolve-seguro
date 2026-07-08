@@ -29,7 +29,7 @@ export const services: Service[] = [
       "Ativação Descomplicada: Cuidamos de toda a parte burocrática e legal para que sua apólice seja emitida de forma rápida, transparente e totalmente digital.",
       "Gestão Ativa e Suporte em Sinistros: Se o imprevisto acontecer, você não fala com robôs. Nossa equipe assume a linha de frente para garantir que sua indenização seja paga sem estresse."
     ],
-    ctaText: "Simular Meu Seguro de Vida Inteligente",
+    ctaText: "Faça sua cotação",
     seo: {
       title: "Seguro de Vida e Planejamento Sucessório | Rhema",
       description: "Garanta a liquidez da sua família e proteja seu patrimônio. Conheça o Seguro de Vida inteligente da Rhema. Faça uma simulação online rápida."
@@ -49,7 +49,7 @@ export const services: Service[] = [
       "Ativação Descomplicada: Emissão rápida com cobertura imediata e suporte para migração de planos.",
       "Gestão Ativa e Suporte em Sinistros: Acompanhamento em consultas, exames, internações e reembolsos."
     ],
-    ctaText: "Falar com Consultor de Saúde",
+    ctaText: "Faça sua cotação",
     seo: {
       title: "Seguro Saúde Familiar e Empresarial | Rhema Seguros",
       description: "Acesse a medicina privada de excelência com o melhor custo-benefício. Proteja quem você ama com a rede credenciada Rhema. Cote agora!"
@@ -69,7 +69,7 @@ export const services: Service[] = [
       "Ativação Descomplicada: Emissão ágil com cobertura completa e documentação transparente.",
       "Gestão Ativa e Suporte em Sinistros: Defesa jurídica especializada e suporte em processos judiciais."
     ],
-    ctaText: "Garantir Blindagem Jurídica do Meu Negócio",
+    ctaText: "Faça sua cotação",
     seo: {
       title: "Seguro de Responsabilidade Civil Geral e Profissional | Rhema",
       description: "Proteja sua empresa de processos e prejuízos com terceiros. Custos de defesa e blindagem jurídica com o Seguro RC Rhema. Garanta sua apólice."

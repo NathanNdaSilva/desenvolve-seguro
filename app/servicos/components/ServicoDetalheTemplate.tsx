@@ -32,6 +32,7 @@ export default function ServicoDetalheTemplate({ service }: { service: Service }
                 src={service.imageSrc}
                 alt={service.title}
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-contain p-4"
                 priority
               />
