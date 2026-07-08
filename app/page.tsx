@@ -26,7 +26,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Rhema Corretora de Seguros | Proteção Inteligente",
-    description: "Consultoria especializada em seguros de vida, saúde e responsabilidade civil. Proteja sua família e seu patrimônio.",
+    description:
+      "Consultoria especializada em seguros de vida, saúde e responsabilidade civil. Proteja sua família e seu patrimônio.",
     url: "/",
     siteName: "Rhema Corretora de Seguros",
     images: [
@@ -40,13 +41,13 @@ export const metadata: Metadata = {
     locale: "pt_BR",
     type: "website",
   },
-  keywords: "seguro de vida, seguro saúde, responsabilidade civil, corretora de seguros, proteção patrimonial, planejamento sucessório",
+  keywords:
+    "seguro de vida, seguro saúde, responsabilidade civil, corretora de seguros, proteção patrimonial, planejamento sucessório",
 };
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
-      
       {/* 1. HERO SECTION - NOVA VERSÃO */}
       <Hero />
 
@@ -68,12 +69,17 @@ export default function Home() {
           </div>
           <div className="space-y-6">
             <p className="text-base md:text-lg text-[#1A1A1A] leading-relaxed">
-              <span className="font-semibold text-primary">Rhema</span>, do grego ῥῆμα, significa "palavra falada" — a revelação específica. 
-              Nós nascemos para trazer a clareza e a direção que você precisa para proteger o que construiu, sob a premissa de que tudo o 
-              que temos é para um propósito maior.
+              <span className="font-semibold text-primary">Rhema</span>, do
+              grego ῥῆμα, significa "palavra falada" — a revelação específica.
+              Nós nascemos para trazer a clareza e a direção que você precisa
+              para proteger o que construiu, sob a premissa de que tudo o que
+              temos é para um propósito maior.
             </p>
             <Link href="/quem-somos">
-              <Button variant="outline" className="rounded-full px-8 cursor-pointer">
+              <Button
+                variant="outline"
+                className="rounded-full px-8 cursor-pointer"
+              >
                 Saiba mais
               </Button>
             </Link>
@@ -85,9 +91,12 @@ export default function Home() {
       <section className="py-16 relative overflow-hidden bg-gradient-to-r from-primary/90 to-primary/60 text-white">
         <div className="container mx-auto px-4 md:px-8 relative z-10">
           <div className="mb-10 text-center md:text-left">
-            <h2 className="text-2xl md:text-3xl font-bold text-white">Nossos Destaques</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-white">
+              Nossos Destaques
+            </h2>
             <p className="mt-2 text-white/80 max-w-2xl text-sm md:text-base">
-              Acompanhe nossos resultados e o impacto visual que geramos nos projetos.
+              Acompanhe nossos resultados e o impacto visual que geramos nos
+              projetos.
             </p>
           </div>
 
@@ -116,11 +125,23 @@ export default function Home() {
               >
                 <CarouselContent>
                   {[
-                    { src: "/saude.png", alt: "Responsabilidade Civil - Proteção Jurídica" },
-                    { src: "/rc_1.png", alt: "Responsabilidade Civil - Segurança Empresarial" },
-                    { src: "/vida.png", alt: "Seguro de Vida - Proteção para sua Família" },
+                    {
+                      src: "/saude.png",
+                      alt: "Responsabilidade Civil - Proteção Jurídica",
+                    },
+                    {
+                      src: "/rc_1.png",
+                      alt: "Responsabilidade Civil - Segurança Empresarial",
+                    },
+                    {
+                      src: "/vida.png",
+                      alt: "Seguro de Vida - Proteção para sua Família",
+                    },
                   ].map((image, index) => (
-                    <CarouselItem key={index} className="md:basis-1/2 lg:basis-full">
+                    <CarouselItem
+                      key={index}
+                      className="md:basis-1/2 lg:basis-full"
+                    >
                       <div className="p-1">
                         <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/20 shadow-sm bg-black/10">
                           <Image
@@ -145,8 +166,8 @@ export default function Home() {
           {/* Botão Serviços - apenas um */}
           <div className="mt-10 text-center">
             <Link href="/servicos">
-              <Button 
-                variant="secondary" 
+              <Button
+                variant="secondary"
                 className="rounded-full px-8 h-11 text-sm bg-white text-primary hover:bg-white/90 transition-all cursor-pointer"
               >
                 Ver todos os serviços
