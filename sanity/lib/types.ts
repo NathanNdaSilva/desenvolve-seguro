@@ -30,7 +30,7 @@ export interface Post {
 
   mainImage?: unknown;
 
-  body?: unknown;
+  body?: any[];
 
   author?: Author;
 

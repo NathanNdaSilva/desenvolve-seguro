@@ -4,12 +4,14 @@ export const POSTS_QUERY = groq`
   *[_type == "post"] | order(publishedAt desc){
     _id,
     title,
-    slug,
     excerpt,
+    slug,
     publishedAt,
     featured,
     readingTime,
-    mainImage,
+    mainImage{
+      asset->
+    },
     "author": author->{
       name,
       role
@@ -25,12 +27,15 @@ export const POST_QUERY = groq`
   *[_type == "post" && slug.current == $slug][0]{
     _id,
     title,
-    slug,
     excerpt,
+    slug,
     publishedAt,
+    featured,
     readingTime,
     body,
-    mainImage,
+    mainImage{
+      asset->
+    },
     "author": author->{
       name,
       role,

@@ -1,5 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
+
+import { CalendarDays, Clock, ArrowRight } from "lucide-react";
+
 import { Post } from "@/sanity/lib/types";
+import { urlFor } from "@/sanity/lib/image";
 
 interface PostCardProps {
   post: Post;
@@ -17,34 +22,65 @@ export function PostCard({ post }: PostCardProps) {
     : "";
 
   return (
-    <article className="overflow-hidden rounded-2xl border bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-      {/* Placeholder da imagem */}
-      <div className="flex h-56 items-center justify-center bg-gray-200 text-gray-500">
-        Imagem do artigo
-      </div>
+    <article className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+      {/* Imagem */}
+      <Link href={`/blog/${post.slug.current}`}>
+        <div className="relative h-60 overflow-hidden bg-slate-200">
+          {post.mainImage ? (
+            <Image
+              src={urlFor(post.mainImage).width(800).height(500).url()}
+              alt={post.title}
+              fill
+              className="object-cover transition duration-500 group-hover:scale-105"
+            />
+          ) : (
+            <div className="flex h-full items-center justify-center text-slate-500">
+              Sem imagem
+            </div>
+          )}
+        </div>
+      </Link>
 
-      <div className="space-y-4 p-6">
+      {/* Conteúdo */}
+      <div className="flex flex-col gap-4 p-6">
         {category && (
-          <span className="inline-block rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-700">
+          <span className="w-fit rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-blue-700">
             {category.title}
           </span>
         )}
 
-        <h2 className="line-clamp-2 text-2xl font-bold">{post.title}</h2>
+        <Link href={`/blog/${post.slug.current}`}>
+          <h2 className="line-clamp-2 text-2xl font-bold text-slate-900 transition-colors group-hover:text-blue-700">
+            {post.title}
+          </h2>
+        </Link>
 
-        <p className="line-clamp-3 text-gray-600">{post.excerpt}</p>
+        <p className="line-clamp-3 leading-relaxed text-slate-600">
+          {post.excerpt}
+        </p>
 
-        <div className="flex items-center justify-between text-sm text-gray-500">
-          <span>{formattedDate}</span>
+        <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500">
+          {formattedDate && (
+            <div className="flex items-center gap-1">
+              <CalendarDays size={16} />
+              <span>{formattedDate}</span>
+            </div>
+          )}
 
-          {post.readingTime && <span>{post.readingTime} min de leitura</span>}
+          {post.readingTime && (
+            <div className="flex items-center gap-1">
+              <Clock size={16} />
+              <span>{post.readingTime} min de leitura</span>
+            </div>
+          )}
         </div>
 
         <Link
           href={`/blog/${post.slug.current}`}
-          className="inline-flex font-semibold text-blue-600 transition hover:text-blue-800"
+          className="mt-2 inline-flex items-center gap-2 font-semibold text-blue-700 transition hover:gap-3"
         >
-          Ler artigo →
+          Ler artigo
+          <ArrowRight size={18} />
         </Link>
       </div>
     </article>
