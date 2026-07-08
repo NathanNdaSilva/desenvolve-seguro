@@ -1,82 +1,104 @@
 import Link from "next/link";
-import Image from "next/image"; // Importante para otimização
+import Image from "next/image";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { services } from "@/constants/services";
-
-// Componentes
 import { HeroSection } from "@/components/sections/HeroSection";
 import { Newsletter } from "@/components/sections/Newsletter";
+import { Metadata } from "next";
 
-export default function ListaServicosPage() {
+export const metadata: Metadata = {
+  title: "Nossos Serviços | Seguro de Vida, Saúde e RC | Rhema",
+  description:
+    "Conheça os serviços da Rhema: Seguro de Vida com planejamento sucessório, Seguro Saúde com rede credenciada e Responsabilidade Civil para empresas. Proteção personalizada.",
+  alternates: {
+    canonical: "/servicos",
+  },
+  openGraph: {
+    title: "Nossos Serviços | Rhema Corretora de Seguros",
+    description: "Seguro de Vida, Saúde e Responsabilidade Civil. Soluções personalizadas para proteger você e sua empresa.",
+    url: "/servicos",
+    siteName: "Rhema Corretora de Seguros",
+    images: [
+      {
+        url: "/vida.png",
+        width: 1200,
+        height: 630,
+        alt: "Serviços Rhema",
+      },
+    ],
+    locale: "pt_BR",
+    type: "website",
+  },
+  keywords: "seguro de vida, seguro saúde, responsabilidade civil, corretora de seguros, proteção patrimonial",
+};
+
+export default function ServicosPage() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       {/* 1. HERO SECTION COM VÍDEO DE FUNDO */}
-      {/* INSTRUÇÃO: Basta colocar um arquivo .mp4 na pasta public/media/ e referenciar aqui */}
       <HeroSection
         title="Nossos Serviços"
-        subtitle="Soluções estratégicas e personalizadas para escalar os resultados do seu negócio."
-        videoSrc="/media/fundo-servicos.mp4"
+        subtitle="Soluções de proteção sob medida para você e sua empresa."
+        videoSrc="/media/video_2.mp4"
       />
 
-      {/* 2. LISTA DE SERVIÇOS (LAYOUT Z-PATTERN PREMIUM) */}
-      <section className="py-24 container mx-auto px-4 md:px-8">
-        <div className="flex flex-col gap-24 max-w-7xl mx-auto">
+      {/* 2. LISTA DE SERVIÇOS */}
+      <section className="py-16 md:py-20 container mx-auto px-4 md:px-8">
+        <div className="flex flex-col gap-16 md:gap-20 max-w-6xl mx-auto">
           {services.map((service, index) => {
-            // A mágica do ziguezague: se for par, imagem na esquerda. Se ímpar, imagem na direita.
             const isEven = index % 2 === 0;
-
             return (
               <div
                 key={service.slug}
                 className={`flex flex-col ${
                   isEven ? "lg:flex-row" : "lg:flex-row-reverse"
-                } gap-12 lg:gap-20 items-center group`}
+                } gap-10 lg:gap-16 items-center group`}
               >
-                {/* Lado A: Imagem/Mídia do Serviço */}
-                <div className="w-full lg:w-1/2 aspect-video lg:aspect-[4/3] relative rounded-3xl overflow-hidden border border-border shadow-md">
-                  <Image
-                    src={service.imageSrc}
-                    alt={service.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
+                {/* Imagem */}
+                <div className="w-full lg:w-1/2">
+                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-muted/50 border border-border shadow-md">
+                    <Image
+                      src={service.imageSrc}
+                      alt={service.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
                 </div>
 
-                {/* Lado B: Informações e Conversão */}
-                <div className="w-full lg:w-1/2 space-y-8">
+                {/* Conteúdo */}
+                <div className="w-full lg:w-1/2 space-y-6">
                   <div>
-                    <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+                    <span className="inline-block text-sm font-medium text-primary bg-primary/10 px-3 py-1 rounded-full mb-3">
+                      {service.introSubtitle}
+                    </span>
+                    <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
                       {service.title}
                     </h2>
-                    <p className="text-xl text-muted-foreground leading-relaxed">
-                      {service.introSubtitle}
+                    <p className="text-muted-foreground leading-relaxed">
+                      {service.introDescription}
                     </p>
                   </div>
 
-                  {/* Mostramos 3 pontos da metodologia como um "Gostinho" do que o serviço entrega */}
-                  <ul className="space-y-4 py-4">
+                  {/* Metodologia (3 primeiros itens) */}
+                  <ul className="space-y-3">
                     {service.methodology.slice(0, 3).map((item, i) => (
-                      <li key={i} className="flex items-start gap-4">
-                        <CheckCircle2 className="w-6 h-6 text-primary shrink-0 mt-0.5" />
-                        <span className="text-muted-foreground line-clamp-2">
-                          {item}
-                        </span>
+                      <li key={i} className="flex items-start gap-3 text-sm text-muted-foreground">
+                        <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                        <span>{item}</span>
                       </li>
                     ))}
                   </ul>
 
-                  <div className="pt-4">
-                    <Link href={`/servicos/${service.slug}`}>
-                      <Button
-                        size="lg"
-                        className="rounded-full h-14 px-8 text-lg w-full sm:w-auto shadow-md group/btn"
-                      >
-                        Ver detalhes do serviço
-                        <ArrowRight className="w-5 h-5 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-                      </Button>
-                    </Link>
-                  </div>
+                  {/* BOTÃO - VOLTOU PARA VER DETALHES */}
+                  <Link href={`/servicos/${service.slug}`}>
+                    <Button className="rounded-full px-8 group cursor-pointer">
+                      Ver detalhes do serviço
+                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </Link>
                 </div>
               </div>
             );
@@ -84,31 +106,23 @@ export default function ListaServicosPage() {
         </div>
       </section>
 
-      {/* 3. CALL TO ACTION / DIAGNÓSTICO */}
-      <section className="py-32 bg-primary/5 border-t border-border">
-        <div className="container mx-auto px-4 text-center max-w-3xl space-y-8">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+      {/* 3. CALL TO ACTION */}
+      <section className="py-16 md:py-20 bg-primary/5 border-y border-border/50">
+        <div className="container mx-auto px-4 md:px-8 text-center max-w-3xl">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
             Não sabe por onde começar?
           </h2>
-          <p className="text-xl text-muted-foreground leading-relaxed">
-            Fale com um de nossos especialistas. Faremos um diagnóstico
-            detalhado da sua empresa para entender exatamente qual solução trará
-            o maior retorno para o seu momento atual.
+          <p className="text-muted-foreground mb-8">
+            Fale com um de nossos especialistas. Faremos um diagnóstico detalhado do seu perfil para entender exatamente qual solução trará o maior retorno para o seu momento atual.
           </p>
-          <div className="pt-8">
-            <Link href="/contato">
-              <Button
-                size="lg"
-                className="rounded-full h-16 px-10 text-xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
-              >
-                Solicitar Diagnóstico Gratuito
-              </Button>
-            </Link>
-          </div>
+          <Link href="/cotacao">
+            <Button size="lg" className="rounded-full px-10 h-14 text-base shadow-lg hover:shadow-xl transition-all cursor-pointer">
+              Solicitar Diagnóstico Gratuito
+            </Button>
+          </Link>
         </div>
       </section>
 
-      {/* 4. NEWSLETTER */}
       <Newsletter />
     </div>
   );

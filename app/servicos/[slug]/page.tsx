@@ -1,123 +1,124 @@
 import { notFound } from "next/navigation";
-import Image from "next/image"; // Importante para otimização
-import { CheckCircle2, Trophy } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+import { ArrowLeft, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { services } from "@/constants/services";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { ContactForm } from "@/components/forms/ContactForm";
 import { Newsletter } from "@/components/sections/Newsletter";
+import { Metadata } from "next";
 
-interface ServicePageProps {
-  params: Promise<{ slug: string }>;
+// Gerar páginas estáticas para cada serviço
+export async function generateStaticParams() {
+  return services.map((service) => ({
+    slug: service.slug,
+  }));
 }
 
-export default async function ServicoDetalhePage({ params }: ServicePageProps) {
-  const resolvedParams = await params;
-  const service = services.find((s) => s.slug === resolvedParams.slug);
+// Gerar metadata dinâmica para SEO
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const service = services.find((s) => s.slug === params.slug);
+  
+  if (!service) {
+    return {
+      title: "Serviço não encontrado",
+    };
+  }
 
-  if (!service) notFound();
+  return {
+    title: service.seo.title,
+    description: service.seo.description,
+  };
+}
+
+export default async function ServicoDetalhePage({ params }: { params: { slug: string } }) {
+  const service = services.find((s) => s.slug === params.slug);
+
+  if (!service) {
+    notFound();
+  }
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* 1. HERO COM VÍDEO DINÂMICO */}
+      {/* Hero com vídeo */}
       <HeroSection
         title={service.title}
         subtitle={service.heroSubtitle}
-        videoSrc={service.videoSrc} // O vídeo agora vem das constantes
+        videoSrc={service.videoSrc}
       />
 
-      {/* 2. INTRODUÇÃO COM IMAGEM DINÂMICA */}
-      <section className="py-24 container mx-auto px-4 md:px-8">
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-24 items-center max-w-6xl mx-auto">
-          {/* Imagem do Serviço */}
-          <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-border">
-            <Image
-              src={service.imageSrc}
-              alt={service.title}
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
+      {/* Conteúdo Principal */}
+      <section className="py-16 md:py-20 container mx-auto px-4 md:px-8">
+        <div className="max-w-5xl mx-auto">
+          <Link
+            href="/servicos"
+            className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mb-8 cursor-pointer"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Voltar para serviços
+          </Link>
 
-          <div className="space-y-6">
-            <h2 className="text-3xl font-bold">{service.title}</h2>
-            <p className="text-xl text-primary font-medium">
-              {service.introSubtitle}
-            </p>
-            <p className="text-muted-foreground text-lg leading-relaxed whitespace-pre-line">
-              {service.introDescription}
-            </p>
-            <div className="pt-4">
-              <Button size="lg" className="rounded-full px-8 h-14 text-lg">
-                Diagnóstico Gratuito
-              </Button>
+          {/* Imagem e Introdução */}
+          <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+            <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-primary/5 border border-border shadow-md">
+              <Image
+                src={service.imageSrc}
+                alt={service.title}
+                fill
+                className="object-contain p-4"
+                priority
+              />
+            </div>
+            <div>
+              <span className="inline-block text-sm font-medium text-primary bg-primary/10 px-3 py-1 rounded-full mb-4">
+                {service.introSubtitle}
+              </span>
+              <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                {service.title}
+              </h1>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                {service.introDescription}
+              </p>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* 3. METODOLOGIA E FORMULÁRIO */}
-      <section className="py-24 bg-muted/30 border-y border-border/50">
-        <div className="container mx-auto px-4 md:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 max-w-6xl mx-auto items-start">
-            {/* Lado Esquerdo: Metodologia */}
-            <div className="space-y-12">
-              <h2 className="text-3xl md:text-4xl font-bold">
-                Nossa Metodologia
-              </h2>
-              <ul className="space-y-6">
-                {service.methodology.map((item, index) => (
-                  <li key={index} className="flex items-start gap-4">
-                    <CheckCircle2 className="w-6 h-6 text-primary shrink-0 mt-1" />
-                    <p className="text-muted-foreground text-lg leading-relaxed">
-                      {item}
-                    </p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Lado Direito: Captura de Lead */}
-            <div className="sticky top-28">
-              <ContactForm />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. DIFERENCIAIS */}
-      <section className="py-24 bg-primary text-primary-foreground relative overflow-hidden">
-        <div className="container mx-auto px-4 md:px-8 relative z-10">
-          <div className="flex flex-col items-center justify-center mb-16 text-center space-y-4">
-            <div className="bg-primary-foreground/10 px-8 py-2 rounded-full text-sm font-medium uppercase tracking-widest">
-              Por que nos escolher
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold">
-              Nossos Diferenciais
+          {/* Metodologia Completa */}
+          <div className="bg-muted/30 border border-border rounded-2xl p-8 md:p-10 mb-12">
+            <h2 className="text-2xl font-bold text-foreground mb-4">
+              O Método Rhema: Proteção Sem Burocracia
             </h2>
+            <p className="text-muted-foreground mb-8">
+              Desenvolvemos uma abordagem em 4 etapas para tirar o peso técnico das suas costas, garantindo que você pague apenas pelo que realmente precisa.
+            </p>
+            <div className="space-y-6">
+              {service.methodology.map((item, index) => (
+                <div key={index} className="flex items-start gap-4">
+                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm shrink-0">
+                    {index + 1}
+                  </div>
+                  <p className="text-foreground leading-relaxed">{item}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {service.differentials.map((diff, index) => (
-              <div
-                key={index}
-                className="bg-background text-foreground rounded-3xl p-8 flex flex-col items-center text-center gap-4 hover:-translate-y-2 transition-transform duration-300 shadow-lg"
-              >
-                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-2">
-                  <Trophy className="w-7 h-7" />
-                </div>
-                <h3 className="font-bold text-xl">{diff.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  {diff.description}
-                </p>
-              </div>
-            ))}
+          {/* CTA Final */}
+          <div className="bg-primary text-white rounded-3xl p-8 md:p-12 text-center">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              Pronto para proteger o que você construiu?
+            </h2>
+            <p className="text-white/80 mb-8 max-w-2xl mx-auto">
+              Fale com um consultor especialista e descubra a melhor solução para o seu momento.
+            </p>
+            <Link href="/cotacao">
+              <Button className="bg-white text-primary hover:bg-white/90 rounded-full px-8 py-6 h-auto text-base font-semibold shadow-lg hover:shadow-xl transition-all cursor-pointer">
+                {service.ctaText}
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* 5. NEWSLETTER */}
       <Newsletter />
     </div>
   );

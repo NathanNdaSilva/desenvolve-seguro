@@ -67,7 +67,7 @@ export function ContactForm() {
       ) : (
         <>
           <h2 className="text-3xl font-bold mb-8 text-foreground">
-            Impulsione o seu negócio
+            Entre em contato conosco
           </h2>
           <form
             onSubmit={handleSubmit}
@@ -112,11 +112,11 @@ export function ContactForm() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="empresa">Empresa</Label>
+              <Label htmlFor="assunto">Tema Principal</Label>
               <Input
-                id="empresa"
-                name="empresa"
-                placeholder="Nome da sua empresa"
+                id="assunto"
+                name="assunto"
+                placeholder="Assunto"
                 className="bg-background h-12 rounded-xl border-border/50 focus-visible:ring-primary/30"
                 disabled={isSubmitting}
               />
@@ -143,7 +143,7 @@ export function ContactForm() {
 
             <Button
               type="submit"
-              className="w-full h-14 text-lg rounded-xl mt-4 transition-all shadow-md hover:shadow-lg"
+              className="w-full h-14 text-lg rounded-xl mt-4 transition-all shadow-md hover:shadow-lg cursor-pointer"
               disabled={isSubmitting}
             >
               {isSubmitting ? "Enviando..." : "Enviar Mensagem"}
