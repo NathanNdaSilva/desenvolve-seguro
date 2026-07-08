@@ -109,27 +109,6 @@ function AccordionItem({ question, answer }: { question: string; answer: string 
 }
 
 export default function FAQPage() {
-  const [formData, setFormData] = useState({
-    nome: "",
-    email: "",
-    pergunta: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus("idle");
-
-    // Simula envio
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    
-    setIsSubmitting(false);
-    setSubmitStatus("success");
-    setFormData({ nome: "", email: "", pergunta: "" });
-  };
-
   return (
     <div className="min-h-screen bg-background">
       
@@ -164,7 +143,7 @@ export default function FAQPage() {
         </div>
 
         {/* CTA Final */}
-        <div className="bg-primary text-white rounded-3xl p-8 md:p-12 text-center mb-16">
+        <div className="bg-primary text-white rounded-3xl p-8 md:p-12 text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
             Ainda ficou com alguma dúvida sobre o seu perfil?
           </h2>
@@ -190,82 +169,7 @@ export default function FAQPage() {
           </div>
         </div>
 
-        {/* Chat Assíncrono - Formulário de Perguntas */}
-        <div className="bg-muted/30 border border-border rounded-2xl p-6 md:p-8">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="p-2 bg-primary/10 rounded-full">
-              <Send className="w-5 h-5 text-primary" />
-            </div>
-            <h2 className="text-xl font-bold text-foreground">Envie sua pergunta</h2>
-          </div>
-          <p className="text-muted-foreground mb-6">
-            Não encontrou sua dúvida? Envie sua pergunta e nossa equipe responderá em até 24 horas.
-          </p>
-
-          {submitStatus === "success" ? (
-            <div className="bg-green-50 border border-green-200 rounded-xl p-6 text-center">
-              <p className="text-green-800 font-medium">✅ Pergunta enviada com sucesso!</p>
-              <p className="text-green-600/80 text-sm mt-2">Responderemos em até 24 horas.</p>
-              <Button
-                variant="outline"
-                className="mt-4 rounded-full"
-                onClick={() => setSubmitStatus("idle")}
-              >
-                Enviar outra pergunta
-              </Button>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="faq-nome" className="block text-sm font-medium text-foreground mb-1">
-                    Seu nome
-                  </label>
-                  <Input
-                    id="faq-nome"
-                    placeholder="Digite seu nome"
-                    value={formData.nome}
-                    onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
-                    required
-                  />
-                </div>
-                <div>
-                  <label htmlFor="faq-email" className="block text-sm font-medium text-foreground mb-1">
-                    Seu e-mail
-                  </label>
-                  <Input
-                    id="faq-email"
-                    type="email"
-                    placeholder="seu@email.com"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    required
-                  />
-                </div>
-              </div>
-              <div>
-                <label htmlFor="faq-pergunta" className="block text-sm font-medium text-foreground mb-1">
-                  Sua pergunta
-                </label>
-                <Textarea
-                  id="faq-pergunta"
-                  placeholder="Escreva sua pergunta aqui..."
-                  rows={4}
-                  value={formData.pergunta}
-                  onChange={(e) => setFormData({ ...formData, pergunta: e.target.value })}
-                  required
-                />
-              </div>
-              <Button
-                type="submit"
-                className="w-full md:w-auto rounded-full px-8"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? "Enviando..." : "Enviar pergunta"}
-              </Button>
-            </form>
-          )}
-        </div>
+        {/* ⚠️ SEÇÃO "ENVIE SUA PERGUNTA" REMOVIDA ⚠️ */}
       </div>
     </div>
   );

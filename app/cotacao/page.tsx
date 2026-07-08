@@ -1,15 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
 export default function CotacaoPage() {
-  const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const [formData, setFormData] = useState({
     nome: "",
     email: "",
@@ -18,26 +17,81 @@ export default function CotacaoPage() {
     mensagem: "",
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-
-    // Simula envio para o email
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    // Redireciona para o WhatsApp
-    const mensagem = `Olá! Meu nome é ${formData.nome}. Gostaria de fazer uma cotação para: ${formData.servico}`;
-    const whatsappUrl = `https://wa.me/5511921081491?text=${encodeURIComponent(mensagem)}`;
-    
-    setLoading(false);
-    router.push(whatsappUrl);
-  };
-
   const servicos = [
     { value: "blindagem", label: "Blindagem Patrimonial e Planejamento Sucessório (Seguro de Vida)" },
     { value: "saude", label: "Cuidados e Saúde para Mim e Minha Família (Seguro Saúde Familiar)" },
     { value: "negocio", label: "Proteção para o meu Negócio (Responsabilidade Civil Geral)" },
   ];
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setSubmitStatus("idle");
+
+    try {
+      // Enviar para a API
+      const response = await fetch('/api/send-cotacao', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nome: formData.nome,
+          email: formData.email,
+          telefone: formData.whatsapp,
+          mensagem: formData.mensagem,
+          plano: formData.servico,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus("success");
+        setFormData({
+          nome: "",
+          email: "",
+          whatsapp: "",
+          servico: "",
+          mensagem: "",
+        });
+      } else {
+        setSubmitStatus("error");
+        console.error(data.error);
+      }
+    } catch (error) {
+      setSubmitStatus("error");
+      console.error('Erro ao enviar:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Se já enviou com sucesso, mostra a mensagem de agradecimento
+  if (submitStatus === "success") {
+    return (
+      <div className="min-h-screen bg-background py-16">
+        <div className="container mx-auto max-w-3xl px-4">
+          <div className="bg-muted/30 border border-border rounded-3xl p-8 md:p-12 text-center">
+            <div className="text-6xl mb-4">✅</div>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+              Cotação enviada com sucesso!
+            </h2>
+            <p className="text-muted-foreground mb-6">
+              Em breve entraremos em contato com uma análise personalizada para você.
+            </p>
+            <Button
+              onClick={() => {
+                setSubmitStatus("idle");
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+              className="rounded-full px-8"
+            >
+              Fazer nova cotação
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background py-16">
@@ -49,6 +103,14 @@ export default function CotacaoPage() {
           <p className="text-muted-foreground mb-8">
             Preencha os campos abaixo e receba uma análise consultiva personalizada.
           </p>
+
+          {submitStatus === "error" && (
+            <div className="bg-red-50 border border-red-200 rounded-xl p-4 mb-6">
+              <p className="text-red-800 text-sm">
+                ❌ Ocorreu um erro ao enviar sua cotação. Por favor, tente novamente.
+              </p>
+            </div>
+          )}
 
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Campo 1: Nome */}
@@ -89,7 +151,7 @@ export default function CotacaoPage() {
               </Label>
               <Input
                 id="whatsapp"
-                placeholder="55 11 92108-1491"
+                placeholder="+55 (00) 90000-0000"
                 value={formData.whatsapp}
                 onChange={(e) => setFormData({ ...formData, whatsapp: e.target.value })}
                 required
@@ -142,7 +204,7 @@ export default function CotacaoPage() {
             <Button
               type="submit"
               size="lg"
-              className="w-full h-14 text-lg rounded-full shadow-md hover:shadow-lg transition-all"
+              className="w-full h-14 text-lg rounded-full shadow-md hover:shadow-lg transition-all cursor-pointer"
               disabled={loading}
             >
               {loading ? "Enviando..." : "Enviar Dados para Análise Consultiva"}
