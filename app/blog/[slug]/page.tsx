@@ -38,7 +38,7 @@ import { ArticleHeader } from "./components/ArticleHeader";
 import { ArticleBody } from "./components/ArticleBody";
 import { ArticleAuthor } from "./components/ArticleAuthor";
 import { ShareButtons } from "./components/ShareButtons";
-import { RelatedPosts } from "./components/RelatedPosts";
+{/* import { RelatedPosts } from "./components/RelatedPosts"; */}
 
 interface PageProps {
   params: Promise<{
@@ -68,7 +68,7 @@ export default async function ArticlePage({ params }: PageProps) {
 
       <ShareButtons />
 
-      <RelatedPosts />
+      {/* <RelatedPosts /> */}
     </main>
   );
 }

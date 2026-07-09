@@ -1,5 +1,8 @@
 "use client";
 
+import { FaWhatsapp, FaLinkedin, FaFacebookF } from "react-icons/fa";
+import { LuLink } from "react-icons/lu";
+
 export function ShareButtons() {
   const share = (platform: "whatsapp" | "linkedin" | "facebook") => {
     const url = encodeURIComponent(window.location.href);
@@ -28,44 +31,55 @@ export function ShareButtons() {
       await navigator.clipboard.writeText(window.location.href);
       alert("Link copiado com sucesso!");
     } catch (error) {
-      console.error("Erro ao copiar o link:", error);
+      console.error(error);
       alert("Não foi possível copiar o link.");
     }
   };
 
+  const buttonStyle =
+    "flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-700 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-blue-500 hover:text-blue-600 hover:shadow-md";
+
   return (
-    <section className="mt-12">
-      <h3 className="mb-4 text-lg font-semibold">
+    <section className="mt-16 border-t border-slate-200 pt-10">
+      <h3 className="text-xl font-semibold text-slate-900">
         Compartilhe este artigo
       </h3>
 
-      <div className="flex flex-wrap gap-3">
+      <p className="mt-2 text-sm text-slate-500">
+        Gostou deste conteúdo? Compartilhe com outras pessoas.
+      </p>
+
+      <div className="mt-6 flex flex-wrap gap-3">
         <button
           onClick={() => share("whatsapp")}
-          className="rounded-lg border px-4 py-2 transition-colors hover:bg-gray-100"
+          className={buttonStyle}
         >
+          <FaWhatsapp className="text-green-500" size={18} />
           WhatsApp
         </button>
 
         <button
           onClick={() => share("linkedin")}
-          className="rounded-lg border px-4 py-2 transition-colors hover:bg-gray-100"
+          className={buttonStyle}
         >
+          <FaLinkedin className="text-blue-700" size={18} />
           LinkedIn
         </button>
 
         <button
           onClick={() => share("facebook")}
-          className="rounded-lg border px-4 py-2 transition-colors hover:bg-gray-100"
+          className={buttonStyle}
         >
+          <FaFacebookF className="text-blue-600" size={18} />
           Facebook
         </button>
 
         <button
           onClick={copyLink}
-          className="rounded-lg border px-4 py-2 transition-colors hover:bg-gray-100"
+          className={buttonStyle}
         >
-          Copiar Link
+          <LuLink size={18} />
+          Copiar link
         </button>
       </div>
     </section>
