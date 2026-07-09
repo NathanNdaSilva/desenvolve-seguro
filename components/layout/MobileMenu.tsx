@@ -61,12 +61,6 @@ export function MobileMenu({ navLinks }: { navLinks: NavLink[] }) {
             </nav>
 
             <div className="mt-auto flex flex-col gap-6 pb-8 pt-8 border-t border-border">
-              <button className="flex items-center gap-4 text-muted-foreground hover:text-primary transition-colors text-lg">
-                <div className="p-2 bg-muted rounded-full">
-                  <Menu className="h-5 w-5" />
-                </div>
-                <span>Mudar Idioma</span>
-              </button>
               
               <SheetClose asChild>
                 <Link href="/cotacao" className="w-full">
