@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, CheckCircle2 } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { Newsletter } from "@/components/sections/Newsletter";
@@ -41,9 +41,10 @@ export default function ServicoDetalheTemplate({ service }: { service: Service }
               <span className="inline-block text-sm font-medium text-primary bg-primary/10 px-3 py-1 rounded-full mb-4">
                 {service.introSubtitle}
               </span>
-              <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              {/* Ajustado para h2 para evitar duplicidade de H1 com o HeroSection */}
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
                 {service.title}
-              </h1>
+              </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 {service.introDescription}
               </p>

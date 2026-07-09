@@ -15,31 +15,53 @@ export function Newsletter() {
     setIsSubmitting(true);
     setStatus("idle");
 
-    // Simula envio
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    
-    setIsSubmitting(false);
-    setStatus("success");
-    setEmail("");
+    try {
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      if (response.ok) {
+        setStatus("success");
+        setEmail("");
+      } else {
+        setStatus("error");
+      }
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <section className="py-16 bg-[#F5F7FA]">
+    <section className="py-16 bg-muted/40 transition-colors duration-300">
       <div className="container mx-auto px-4 md:px-8 max-w-4xl">
-        <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-border text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-[#0A3455] mb-3">
+        <div className="bg-card text-card-foreground rounded-3xl p-8 md:p-12 shadow-sm border border-border text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-primary mb-3">
             Inscreva-se na nossa Newsletter
           </h2>
-          <p className="text-[#666666] mb-6 max-w-2xl mx-auto">
-            Receba conteúdos exclusivos sobre proteção patrimonial, seguros e planejamento financeiro.
+          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+            Receba conteúdos exclusivos sobre proteção patrimonial, seguros e planejamento financeiro sempre que o Rômulo publicar um novo artigo.
           </p>
 
-          {status === "success" ? (
-            <div className="bg-green-50 border border-green-200 rounded-xl p-6">
-              <p className="text-green-800 font-medium">✅ Inscrição realizada com sucesso!</p>
-              <p className="text-green-600/80 text-sm mt-1">Você receberá nossos conteúdos em breve.</p>
+          {status === "success" && (
+            <div className="bg-green-500/10 border border-green-500/20 text-green-600 dark:text-green-400 rounded-xl p-6">
+              <p className="font-medium">✅ Inscrição realizada com sucesso!</p>
+              <p className="text-sm mt-1 opacity-90">Você agora faz parte da nossa lista e receberá atualizações.</p>
             </div>
-          ) : (
+          )}
+
+          {status === "error" && (
+            <div className="bg-destructive/10 border border-destructive/20 text-destructive rounded-xl p-6 mb-4">
+              <p className="font-medium">❌ Ops! Algo deu errado.</p>
+              <p className="text-sm mt-1 opacity-90">Tente novamente ou verifique se o e-mail digitado está correto.</p>
+            </div>
+          )}
+
+          {status !== "success" && (
             <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-2xl mx-auto">
               <Input
                 type="email"
@@ -47,12 +69,12 @@ export function Newsletter() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="flex-1 h-12 rounded-full px-6 border-border focus:ring-2 focus:ring-primary"
+                className="flex-1 h-12 rounded-full px-6 bg-background border-border focus-visible:ring-2 focus-visible:ring-primary"
               />
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="h-12 rounded-full px-8 bg-[#1A4E78] text-white hover:bg-[#0A3455] transition-all cursor-pointer flex items-center gap-2 shrink-0"
+                className="h-12 rounded-full px-8 bg-secondary text-secondary-foreground hover:bg-secondary/90 transition-all cursor-pointer flex items-center gap-2 shrink-0 font-medium"
               >
                 {isSubmitting ? "Enviando..." : (
                   <>

@@ -46,7 +46,7 @@ export function Footer() {
                 <MessageCircle className="w-4 h-4" />
               </Link>
               <Link
-                href="mailto:contato@rhema.com.br"
+                href="mailto:timepack10@gmail.com"
                 aria-label="E-mail"
                 className="p-2.5 bg-background border border-border rounded-full text-muted-foreground hover:text-primary hover:border-white hover:-translate-y-1 transition-all duration-300 shadow-sm"
               >
@@ -115,8 +115,8 @@ export function Footer() {
               </li>
               <li className="pt-2 border-t border-primary-foreground/20">
                 <span className="block font-medium text-white mb-1">Contato</span>
-                <a href="mailto:contato@rhema.com.br" className="hover:text-white transition-colors">
-                  contato@rhema.com.br
+                <a href="mailto:timepack10@gmail.com" className="hover:text-white transition-colors">
+                  timepack10@gmail.com
                 </a>
                 <br />
                 <a href="https://wa.me/5511921081491" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">

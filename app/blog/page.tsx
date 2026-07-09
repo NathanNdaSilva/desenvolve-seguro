@@ -1,8 +1,6 @@
 import { Metadata } from "next";
 
 import { BlogGrid } from "./components/BlogGrid";
-import { BlogHero } from "./components/BlogHero";
-import { EmptyState } from "./components/EmptyState";
 import { SearchBar } from "./components/SearchBar";
 
 import { POSTS_QUERY } from "@/sanity/lib/queries";
@@ -12,7 +10,7 @@ import { Post } from "@/sanity/lib/types";
 export const metadata: Metadata = {
   title: "Blog | Rhema Corretora de Seguros",
   description:
-    "Acompanhe o blog da Rhema com artigos sobre proteção em vida, planejamento sucessório, blindagem patrimonial e novidades do mercado de seguros.",
+    "Acompanhe o blog da Rhema com artigos sobre proteção em vida, planejamento sucessório, blindagem patrimonial and novidades do mercado de seguros.",
   alternates: {
     canonical: "/blog",
   },
@@ -49,26 +47,59 @@ export const metadata: Metadata = {
     "blog seguros, planejamento sucessório, blindagem patrimonial, proteção em vida, mercado de seguros",
 };
 
-export default async function BlogPage() {
+interface BlogPageProps {
+  searchParams: Promise<{ search?: string }>;
+}
+
+export default async function BlogPage({ searchParams }: BlogPageProps) {
+  const { search } = await searchParams;
+
+  // Busca todos os posts do Sanity
   const { data } = await sanityFetch({
     query: POSTS_QUERY,
   });
 
-  const posts = (data ?? []) as Post[];
+  let posts = (data ?? []) as Post[];
+
+  // Associa e filtra estritamente com base nos nomes/títulos dos artigos
+  if (search) {
+    const searchLower = search.toLowerCase();
+    posts = posts.filter((post) =>
+      post.title?.toLowerCase().includes(searchLower)
+    );
+  }
 
   return (
-    <>
-      <BlogHero />
+    <div className="flex flex-col min-h-screen">
+      {/* Banner Faixa Azul Padrão Rhema */}
+      <section className="bg-gradient-to-br from-[#0A3455] via-[#1A4E78] to-[#1A4E78] text-white py-16 md:py-20 text-center transition-colors duration-300">
+        <div className="max-w-3xl mx-auto px-4 md:px-8">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 font-roboto">
+            Blog Rhema
+          </h1>
+          <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
+            Acompanhe nossos artigos sobre proteção em vida, planejamento sucessório e blindagem patrimonial.
+          </p>
+        </div>
+      </section>
 
-      <main className="mx-auto max-w-7xl space-y-10 px-6 py-16">
+      {/* Conteúdo Principal do Blog */}
+      <main className="mx-auto max-w-7xl w-full space-y-10 px-6 py-16 flex-1">
         <SearchBar />
 
         {posts.length ? (
           <BlogGrid posts={posts} />
         ) : (
-          <EmptyState />
+          <div className="text-center py-20 bg-muted/20 border border-dashed border-border rounded-2xl max-w-2xl mx-auto px-4">
+            <p className="text-xl font-medium text-foreground">
+              Não existe artigo com esse nome.
+            </p>
+            <p className="text-muted-foreground text-sm mt-2">
+              Verifique a grafia ou tente buscar por outro termo.
+            </p>
+          </div>
         )}
       </main>
-    </>
+    </div>
   );
 }

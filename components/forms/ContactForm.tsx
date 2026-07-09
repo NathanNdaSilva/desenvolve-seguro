@@ -25,7 +25,7 @@ export function ContactForm() {
     try {
       const result = await sendContactEmail(formData);
 
-      if (result.success) {
+      if (result && result.success) {
         setSubmitStatus("success");
         formElement.reset();
       } else {

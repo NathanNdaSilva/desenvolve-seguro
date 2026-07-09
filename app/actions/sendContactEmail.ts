@@ -2,7 +2,7 @@
 
 import nodemailer from 'nodemailer';
 
-export async function sendContactEmail(formData: FormData) {
+export async function sendContactFormEmail(formData: FormData) {
   try {
     // Pegar os dados do formulário
     const nome = formData.get('nome') as string;
@@ -11,41 +11,30 @@ export async function sendContactEmail(formData: FormData) {
     const assunto = formData.get('assunto') as string;
     const mensagem = formData.get('mensagem') as string;
 
-    // Validações
+    // Validações básicas
     if (!nome || nome.length < 2) {
-      return { 
-        success: false, 
-        error: 'Nome é obrigatório' 
-      };
+      return { success: false, error: 'Nome é obrigatório' };
     }
-
     if (!email || !email.includes('@')) {
-      return { 
-        success: false, 
-        error: 'E-mail inválido' 
-      };
+      return { success: false, error: 'E-mail inválido' };
     }
-
     if (!mensagem || mensagem.length < 5) {
-      return { 
-        success: false, 
-        error: 'Mensagem é obrigatória' 
-      };
+      return { success: false, error: 'Mensagem é obrigatória' };
     }
 
-    // Configurar o transportador de e-mail
+    // Transportador 100% direto
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASSWORD,
+        user: 'timepack10@gmail.com',
+        pass: 'nhwmzmyntwwguaug',
       },
     });
 
     // Configurar o e-mail que será enviado
     const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: 'romulo@rhema.com.br',
+      from: 'timepack10@gmail.com',
+      to: 'timepack10@gmail.com',
       subject: `📩 Nova mensagem de contato - ${nome}`,
       html: `
         <h2 style="color: #1A4E78;">📩 Nova mensagem do site</h2>
@@ -97,10 +86,7 @@ export async function sendContactEmail(formData: FormData) {
     return { success: true };
 
   } catch (error) {
-    console.error('Erro ao enviar e-mail:', error);
-    return { 
-      success: false, 
-      error: 'Erro ao enviar mensagem. Tente novamente.' 
-    };
+    console.error('Erro crítico no servidor do e-mail:', error);
+    return { success: false, error: 'Erro ao enviar mensagem.' };
   }
 }

@@ -229,8 +229,8 @@ export default function PoliticaPrivacidadePage() {
             <div className="bg-background rounded-xl p-4 border border-border space-y-2">
               <p className="text-foreground">
                 <span className="font-medium">E-mail:</span>{""}
-                <a href="mailto:privacidade@rhema.com.br" className="text-primary hover:underline ml-1">
-                  privacidade@rhema.com.br
+                <a href="mailto:timepack10@gmail.com" className="text-primary hover:underline ml-1">
+                  timepack10@gmail.com
                 </a>
               </p>
               <p className="text-foreground">

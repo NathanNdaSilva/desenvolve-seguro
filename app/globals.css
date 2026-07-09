@@ -4,6 +4,10 @@
 @plugin "tailwindcss-animate";
 @config "../tailwind.config.ts";
 
+@theme {
+  --font-roboto: var(--font-roboto), sans-serif;
+}
+
 /* 2. CAMADAS DO TAILWIND E REGRAS BASE */
 @layer base {
   :root {

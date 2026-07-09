@@ -1,50 +1,91 @@
-"use server";
+'use server';
 
-import nodemailer from "nodemailer";
+import nodemailer from 'nodemailer';
 
 export async function sendContactEmail(formData: FormData) {
-  const nome = formData.get("nome") as string;
-  const email = formData.get("email") as string;
-  const telefone = formData.get("telefone") as string;
-  const empresa = formData.get("empresa") as string;
-  const mensagem = formData.get("mensagem") as string;
-
-  if (!nome || !email || !mensagem) {
-    return { success: false, error: "Campos obrigatórios ausentes." };
-  }
-
   try {
+    // Pegar os dados do formulário
+    const nome = formData.get('nome') as string;
+    const email = formData.get('email') as string;
+    const telefone = formData.get('telefone') as string;
+    const assunto = formData.get('assunto') as string;
+    const mensagem = formData.get('mensagem') as string;
+
+    // Validações básicas
+    if (!nome || nome.length < 2) {
+      return { success: false, error: 'Nome é obrigatório' };
+    }
+    if (!email || !email.includes('@')) {
+      return { success: false, error: 'E-mail inválido' };
+    }
+    if (!mensagem || mensagem.length < 5) {
+      return { success: false, error: 'Mensagem é obrigatória' };
+    }
+
+    // Transportador 100% direto com os dados válidos
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      service: 'gmail',
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        user: 'timepack10@gmail.com',
+        pass: 'nhwmzmyntwwguaug',
       },
     });
 
+    // Configurar o e-mail que será enviado
     const mailOptions = {
-      from: process.env.EMAIL_USER, // O Gmail exige que o remetente seja o próprio e-mail autenticado
-      to: process.env.EMAIL_USER, // Envia para o próprio e-mail do cliente
-      replyTo: email, // Quando o cliente clicar em "Responder", vai para o e-mail do lead
-      subject: `Novo Contato via Site: ${nome} - ${empresa || "Sem empresa"}`,
+      from: 'timepack10@gmail.com',
+      to: 'timepack10@gmail.com',
+      subject: `📩 Nova mensagem de contato - ${nome}`,
       html: `
-        <div style="font-family: sans-serif; max-width: 600px; padding: 20px;">
-          <h2>Novo Contato do Site</h2>
-          <p><strong>Nome:</strong> ${nome}</p>
-          <p><strong>E-mail:</strong> ${email}</p>
-          <p><strong>Telefone:</strong> ${telefone || "Não informado"}</p>
-          <p><strong>Empresa:</strong> ${empresa || "Não informada"}</p>
-          <br/>
-          <p><strong>Mensagem:</strong></p>
-          <p style="background: #f4f4f4; padding: 15px; border-radius: 8px;">${mensagem}</p>
+        <h2 style="color: #1A4E78;">📩 Nova mensagem do site</h2>
+        
+        <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+          <tr>
+            <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold; background: #f5f7fa;">Nome</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">${nome}</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold; background: #f5f7fa;">E-mail</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">${email}</td>
+          </tr>
+          ${telefone ? `
+          <tr>
+            <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold; background: #f5f7fa;">Telefone</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">${telefone}</td>
+          </tr>
+          ` : ''}
+          ${assunto ? `
+          <tr>
+            <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold; background: #f5f7fa;">Assunto</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">${assunto}</td>
+          </tr>
+          ` : ''}
+        </table>
+
+        <h3 style="margin-top: 20px;">💬 Mensagem:</h3>
+        <div style="background: #f5f7fa; padding: 20px; border-radius: 8px; border-left: 4px solid #1A4E78;">
+          <p style="margin: 0; white-space: pre-wrap;">${mensagem}</p>
         </div>
+
+        <hr style="margin: 30px 0; border: 1px solid #eee;" />
+        
+        <p style="color: #666; font-size: 12px;">
+          Esta mensagem foi enviada através do formulário de contato do site Rhema.<br/>
+          <strong>Responder para:</strong> <a href="mailto:${email}" style="color: #1A4E78;">${email}</a>
+        </p>
+
+        <p style="color: #999; font-size: 11px; margin-top: 20px;">
+          Enviado em: ${new Date().toLocaleString('pt-BR')}
+        </p>
       `,
     };
 
     await transporter.sendMail(mailOptions);
+
     return { success: true };
+
   } catch (error) {
-    console.error("Erro no envio de e-mail:", error);
-    return { success: false, error: "Falha ao enviar o e-mail." };
+    console.error('Erro interno no servidor do e-mail:', error);
+    return { success: false, error: 'Erro ao enviar mensagem.' };
   }
 }

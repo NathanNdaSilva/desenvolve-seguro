@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Trancar o token do Sanity para nunca ir pro GitHub
+components/forms/credentials.ts
+actions/credentials.ts

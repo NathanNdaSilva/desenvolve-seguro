@@ -69,10 +69,10 @@ export default function ContatoPage() {
                   <ul className="space-y-4">
                     <li>
                       <a
-                        href="mailto:contato@empresa.com"
+                        href="mailto:timepack10@gmail.com"
                         className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors"
                       >
-                        <Mail className="w-5 h-5" /> contato@empresa.com
+                        <Mail className="w-5 h-5" /> timepack10@gmail.com
                       </a>
                     </li>
                     <li>
@@ -88,7 +88,7 @@ export default function ContatoPage() {
                         href="#"
                         className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors"
                       >
-                        <FaInstagram className="w-5 h-5" /> @empresa.consultoria
+                        <FaInstagram className="w-5 h-5" /> @rhema.corretora
                       </a>
                     </li>
                   </ul>
