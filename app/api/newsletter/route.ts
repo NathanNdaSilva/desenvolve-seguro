@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@sanity/client";
-import { SANITY_TOKEN } from "@/actions/credentials"; // 🔒 Importação local e segura
+
 
 const writeClient = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "11t8dx2l",
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
   apiVersion: "2024-01-01",
-  token: SANITY_TOKEN, // Usando a constante importada do arquivo protegido
+  token: process.env.SANITY_TOKEN,
   useCdn: false,
 });
 
