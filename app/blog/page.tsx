@@ -7,6 +7,8 @@ import { POSTS_QUERY } from "@/sanity/lib/queries";
 import { sanityFetch } from "@/sanity/lib/live";
 import { Post } from "@/sanity/lib/types";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Blog | Rhema Corretora de Seguros",
   description:
@@ -65,7 +67,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   if (search) {
     const searchLower = search.toLowerCase();
     posts = posts.filter((post) =>
-      post.title?.toLowerCase().includes(searchLower)
+      post.title?.toLowerCase().includes(searchLower),
     );
   }
 
@@ -78,7 +80,8 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
             Blog Rhema
           </h1>
           <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
-            Acompanhe nossos artigos sobre proteção em vida, planejamento sucessório e blindagem patrimonial.
+            Acompanhe nossos artigos sobre proteção em vida, planejamento
+            sucessório e blindagem patrimonial.
           </p>
         </div>
       </section>
