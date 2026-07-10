@@ -22,19 +22,27 @@ export async function sendContactFormEmail(formData: FormData) {
       return { success: false, error: 'Mensagem é obrigatória' };
     }
 
+    if (
+      !process.env.EMAIL_USER ||
+      !process.env.EMAIL_PASS ||
+      !process.env.EMAIL_TO
+    ) {
+      throw new Error("Variáveis de ambiente do e-mail não configuradas.");
+    }
+    
     // Transportador 100% direto
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      service: "gmail",
       auth: {
-        user: 'timepack10@gmail.com',
-        pass: 'nhwmzmyntwwguaug',
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     });
 
     // Configurar o e-mail que será enviado
     const mailOptions = {
-      from: 'timepack10@gmail.com',
-      to: 'timepack10@gmail.com',
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_TO,
       subject: `📩 Nova mensagem de contato - ${nome}`,
       html: `
         <h2 style="color: #1A4E78;">📩 Nova mensagem do site</h2>
