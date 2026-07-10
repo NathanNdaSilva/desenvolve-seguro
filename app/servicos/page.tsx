@@ -4,7 +4,6 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { services } from "@/constants/services";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { Newsletter } from "@/components/sections/Newsletter";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -122,8 +121,6 @@ export default function ServicosPage() {
           </Link>
         </div>
       </section>
-
-      <Newsletter />
     </div>
   );
 }

@@ -1,11 +1,10 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, CheckCircle2 } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { services } from "@/constants/services";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { Newsletter } from "@/components/sections/Newsletter";
 import { Metadata } from "next";
 
 // Gerar páginas estáticas para cada serviço
@@ -118,8 +117,6 @@ export default async function ServicoDetalhePage({ params }: { params: { slug: s
           </div>
         </div>
       </section>
-
-      <Newsletter />
     </div>
   );
 }

@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { Film } from "lucide-react";
 import Image from "next/image";
 import {
   Carousel,
@@ -11,7 +10,6 @@ import {
 import { SectionBadge } from "@/components/common/SectionBadge";
 import { ServiceRowCard } from "@/components/common/ServiceRowCard";
 import { SuccessCase } from "@/components/sections/SuccessCase";
-import { Newsletter } from "@/components/sections/Newsletter";
 import { Metadata } from "next";
 import { services } from "@/constants/services";
 import Link from "next/link";
@@ -205,7 +203,6 @@ export default function Home() {
 
       {/* 5. COMPONENTES GLOBAIS */}
       <SuccessCase />
-      <Newsletter />
     </div>
   );
 }

@@ -5,7 +5,6 @@ import { HeroSection } from "@/components/sections/HeroSection";
 import { SectionBadge } from "@/components/common/SectionBadge";
 import { StatCard } from "@/components/common/StatCard";
 import { TestimonialCard } from "@/components/common/TestimonialCard";
-import { Newsletter } from "@/components/sections/Newsletter";
 import { Button } from "@/components/ui/button";
 import { Metadata } from "next";
 
@@ -277,9 +276,6 @@ export default function QuemSomosPage() {
           </Link>
         </div>
       </section>
-
-      {/* 9. NEWSLETTER */}
-      <Newsletter />
     </div>
   );
 }
