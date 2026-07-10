@@ -86,9 +86,6 @@ export function SuccessCase() {
           </div>
         </div>
       </section>
-
-      {/* FAIXA BRANCA */}
-      <div className="h-8 md:h-12 bg-white"></div>
     </div>
   );
 }
