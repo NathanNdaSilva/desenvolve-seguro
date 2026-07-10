@@ -3,7 +3,6 @@ import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { Newsletter } from "@/components/sections/Newsletter";
 import { Service } from "@/constants/services";
 
 export default function ServicoDetalheTemplate({ service }: { service: Service }) {
@@ -87,8 +86,6 @@ export default function ServicoDetalheTemplate({ service }: { service: Service }
           </div>
         </div>
       </section>
-
-      <Newsletter />
     </div>
   );
 }
