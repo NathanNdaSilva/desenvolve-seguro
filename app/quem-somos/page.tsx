@@ -11,7 +11,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Quem Somos | Rhema Corretora de Seguros",
   description:
-    "Conheça a história da Rhema Corretora de Seguros. Consultoria especializada com parceria global MetLife. Ética, transparência e proteção para sua família e empresa.",
+    "Conheça a história da Rhema Corretora de Seguros. Consultoria especializada com ética, transparência e proteção para sua família e empresa.",
   alternates: {
     canonical: "/quem-somos",
   },
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     siteName: "Rhema Corretora de Seguros",
     images: [
       {
-        url: "/romulo_1.png",
+        url: "/romulo_preto.png",
         width: 1200,
         height: 630,
         alt: "Rômulo - Fundador da Rhema Corretora de Seguros",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     locale: "pt_BR",
     type: "website",
   },
-  keywords: "quem somos rhema, corretora de seguros, proteção patrimonial, consultoria em seguros, metlife",
+  keywords: "quem somos rhema, corretora de seguros, proteção patrimonial, consultoria em seguros",
 };
 
 export default function QuemSomosPage() {
@@ -50,10 +50,11 @@ export default function QuemSomosPage() {
         <SectionBadge>Nossa História</SectionBadge>
 
         <div className="grid md:grid-cols-2 gap-8 items-center max-w-6xl mx-auto">
-          <div className="bg-primary/5 aspect-[4/3] rounded-3xl flex items-center justify-center border border-border shadow-inner overflow-hidden p-4">
+          {/* IMAGEM COM FUNDO PRETO */}
+          <div className="bg-black aspect-[4/3] rounded-3xl flex items-center justify-center border border-border shadow-inner overflow-hidden p-4">
             <div className="relative w-full h-full max-h-[500px]">
               <Image
-                src="/romulo_1.png"
+                src="/romulo_preto.png"
                 alt="Rômulo - Fundador da Rhema Corretora de Seguros"
                 fill
                 className="object-contain object-center"
@@ -66,10 +67,10 @@ export default function QuemSomosPage() {
             </h2>
             <p className="text-base md:text-lg text-[#1A1A1A] leading-relaxed">
               A Rhema Corretora de Seguros nasceu do desejo do seu fundador, Rômulo, de entregar ao mercado uma consultoria em seguros que vai além do óbvio. 
-              Unindo seriedade técnica a uma sólida parceria global com a <span className="text-primary font-bold">MetLife Brasil</span>, uma das maiores seguradoras do mundo, 
-              a Rhema atua na intersecção entre segurança financeira e cuidado humano.
+              Rhema é a palavra falada por Deus, uma empresa que nasceu de um grande propósito de ajudar famílias.
             </p>
             <p className="text-base md:text-lg text-[#1A1A1A]/80 leading-relaxed">
+              Buscamos trazer aos clientes as melhores soluções financeiras aliando qualidade e segurança. 
               Orientados por valores sólidos, nossa trajetória é desenhada para garantir que o seu patrimônio, sua saúde e sua empresa estejam blindados, 
               permitindo que você foque no que realmente importa: viver o presente com tranquilidade e planejar o amanhã com ousadia.
             </p>
@@ -77,32 +78,7 @@ export default function QuemSomosPage() {
         </div>
       </section>
 
-      {/* 3. DIFERENCIAL ESTRATÉGICO - PARCERIA METLIFE */}
-      <section className="py-8 md:py-12 bg-primary/5 border-y border-border/50">
-        <div className="container mx-auto px-4 md:px-8 max-w-4xl text-center">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <Shield className="w-6 h-6 text-primary" />
-            <span className="text-sm font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">
-              Parceria Global
-            </span>
-          </div>
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-            Nossa Parceria Global: Rhema & MetLife
-          </h2>
-          <p className="text-base md:text-lg text-[#1A1A1A]/80 leading-relaxed max-w-3xl mx-auto">
-            Não oferecemos apenas contratos ou apólices genéricas; entregamos promessas de proteção institucional 
-            respaldadas por uma das maiores e mais respeitadas instituições financeiras do planeta.
-          </p>
-          <p className="text-base md:text-lg text-[#1A1A1A]/70 leading-relaxed max-w-3xl mx-auto mt-3">
-            A cooperação estratégica da Rhema com a MetLife Brasil permite-nos estruturar soluções de altíssimo 
-            padrão internacional. Isso garante aos nossos segurados nos ramos de Vida e Saúde taxas altamente 
-            competitivas, flexibilidade de coberturas e a certeza absoluta de uma regulação de sinistros rápida, 
-            ágil e sem burocracias desnecessárias.
-          </p>
-        </div>
-      </section>
-
-      {/* 4. NOSSOS PILARES FUNDAMENTAIS - APENAS TEXTO */}
+      {/* 3. NOSSOS PILARES FUNDAMENTAIS */}
       <section className="py-8 md:py-12 container mx-auto px-4 md:px-8">
         <SectionBadge>Nossos Pilares</SectionBadge>
 
@@ -142,7 +118,7 @@ export default function QuemSomosPage() {
         </div>
       </section>
 
-      {/* 5. METODOLOGIA RHEMA - APENAS TEXTO */}
+      {/* 4. METODOLOGIA RHEMA */}
       <section className="py-8 md:py-12 container mx-auto px-4 md:px-8">
         <SectionBadge>Metodologia</SectionBadge>
 
@@ -197,7 +173,7 @@ export default function QuemSomosPage() {
         </div>
       </section>
 
-      {/* 6. CULTURA ORGANIZACIONAL (Missão, Visão, Valores) - APENAS TEXTO */}
+      {/* 5. CULTURA ORGANIZACIONAL (Missão, Visão, Valores) */}
       <section className="py-8 md:py-12 container mx-auto px-4 md:px-8">
         <SectionBadge>Cultura Organizacional</SectionBadge>
 
@@ -208,8 +184,8 @@ export default function QuemSomosPage() {
             </div>
             <h3 className="text-base font-bold text-foreground mb-1 text-primary">Missão</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Blindar a estabilidade financeira, a saúde e a continuidade de famílias e empresas por meio de 
-              uma consultoria de seguros ética, transparente e tecnicamente impecável.
+              Proteger a renda atual e futura das famílias, oferecendo soluções financeiras inteligentes e personalizadas 
+              que garantam segurança, tranquilidade e estabilidade em todos os momentos da vida.
             </p>
           </div>
 
@@ -230,37 +206,15 @@ export default function QuemSomosPage() {
             </div>
             <h3 className="text-base font-bold text-foreground mb-1 text-primary">Valores</h3>
             <ul className="text-sm text-muted-foreground leading-relaxed space-y-1">
-              <li>Cuidado humano legítimo</li>
-              <li>Transparência absoluta</li>
-              <li>Rigor técnico</li>
-              <li>Compromisso inabalável</li>
-              <li>Parcerias com solidez global</li>
+              <li>Transparência</li>
+              <li>Integridade</li>
+              <li>Compromisso com o cliente</li>
             </ul>
           </div>
         </div>
       </section>
 
-      {/* 7. FEEDBACKS - APENAS TEXTO */}
-      <section className="py-8 md:py-12 bg-muted/30 border-y border-border/50">
-        <div className="container mx-auto px-4 md:px-8 max-w-5xl">
-          <SectionBadge>Feedbacks</SectionBadge>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <TestimonialCard
-              companyName="João Silva"
-              role="Empresário"
-              text="A Rhema me trouxe a tranquilidade que eu precisava para minha família. O planejamento sucessório foi feito com muita clareza e ética."
-            />
-            <TestimonialCard
-              companyName="Maria Oliveira"
-              role="Médica"
-              text="Contar com a Rhema para o Seguro Saúde da minha família foi a melhor decisão. Atendimento ágil e suporte excepcional."
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* 8. CTA FINAL */}
+      {/* 6. CTA FINAL */}
       <section className="py-8 md:py-12 container mx-auto px-4 md:px-8">
         <div className="bg-primary rounded-3xl p-8 md:p-10 text-center max-w-4xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">

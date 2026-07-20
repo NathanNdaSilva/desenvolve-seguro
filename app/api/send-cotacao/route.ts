@@ -42,7 +42,7 @@ export async function POST(request: Request) {
     });
 
     // Mude o e-mail abaixo para o seu e-mail pessoal para testar!
-    const emailDestinatario = 'timepack10@gmail.com'; 
+    const emailDestinatario = 'rhema.corretora@gmail.com'; 
 
     const mailOptions = {
       from: process.env.EMAIL_USER,

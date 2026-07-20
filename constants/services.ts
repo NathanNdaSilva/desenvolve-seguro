@@ -60,7 +60,7 @@ export const services: Service[] = [
     title: "Blindagem Jurídica e Operacional",
     heroSubtitle: "Proteja sua empresa de processos e prejuízos com terceiros",
     videoSrc: "/media/video_2.mp4",
-    imageSrc: "/rc_1.png",
+    imageSrc: "/rc_1 (1).png",
     introSubtitle: "Responsabilidade Civil Geral",
     introDescription: "No mundo dos negócios, imprevistos jurídicos podem custar caro. O Seguro de Responsabilidade Civil Geral da Rhema é a armadura que sua empresa precisa contra reclamações de terceiros, danos involuntários corporais ou materiais e custos de defesa jurídica. Protegemos a operação do seu negócio para que sua jornada continue sólida e sem interrupções.",
     methodology: [
@@ -73,6 +73,26 @@ export const services: Service[] = [
     seo: {
       title: "Seguro de Responsabilidade Civil Geral e Profissional | Rhema",
       description: "Proteja sua empresa de processos e prejuízos com terceiros. Custos de defesa e blindagem jurídica com o Seguro RC Rhema. Garanta sua apólice."
+    }
+  },
+  {
+    slug: "seguro-viagem",
+    title: "Proteção em Viagens Nacionais e Internacionais",
+    heroSubtitle: "Viaje com tranquilidade e segurança para qualquer destino",
+    videoSrc: "/media/video_2.mp4",
+    imageSrc: "/viagem.png",
+    introSubtitle: "Seguro Viagem",
+    introDescription: "Viajar é uma das melhores experiências da vida, mas imprevistos podem acontecer. Nossa consultoria em Seguro Viagem garante assistência médica, bagagem extraviada, voos cancelados e muito mais. Viaje com a certeza de que você está protegido em qualquer lugar do mundo.",
+    methodology: [
+      "Diagnóstico de Risco Personalizado: Analisamos seu destino, duração e atividades planejadas.",
+      "Curadoria e Cotação Inteligente: As melhores coberturas com o melhor custo-benefício.",
+      "Ativação Descomplicada: Emissão rápida com cobertura imediata e suporte 24h.",
+      "Gestão Ativa e Suporte em Sinistros: Acompanhamento em emergências médicas e extravio de bagagem."
+    ],
+    ctaText: "Faça sua cotação",
+    seo: {
+      title: "Seguro Viagem Nacional e Internacional | Rhema",
+      description: "Viaje com segurança com o Seguro Viagem Rhema. Assistência médica, bagagem, voos cancelados e muito mais.",
     }
   }
 ];

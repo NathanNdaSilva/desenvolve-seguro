@@ -69,10 +69,10 @@ export default function ContatoPage() {
                   <ul className="space-y-4">
                     <li>
                       <a
-                        href="mailto:timepack10@gmail.com"
+                        href="mailto:rhema.corretora@gmail.com"
                         className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors"
                       >
-                        <Mail className="w-5 h-5" /> timepack10@gmail.com
+                        <Mail className="w-5 h-5" /> rhema.corretora@gmail.com
                       </a>
                     </li>
                     <li>

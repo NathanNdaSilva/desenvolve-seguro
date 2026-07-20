@@ -93,26 +93,67 @@ export default function Home() {
               Nossos Destaques
             </h2>
             <p className="mt-2 text-white/80 max-w-2xl text-sm md:text-base">
-              Acompanhe nossos resultados e o impacto visual que geramos nos
-              projetos.
+              Acompanhe nossos resultados e o impacto visual que geramos nos projetos.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            {/* COLUNA 1: VÍDEO INLINE */}
-            <div className="w-full aspect-video rounded-3xl overflow-hidden shadow-xl border border-white/20">
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                controls
-                className="w-full h-full object-cover"
+            
+            {/* COLUNA 1: CARROSSEL DE VÍDEOS (COM SETINHAS) */}
+            <div className="w-full px-8 lg:px-0">
+              <Carousel
+                opts={{
+                  align: "start",
+                  loop: true,
+                }}
+                className="w-full"
               >
-                <source src="/media/video_1.mp4" type="video/mp4" />
-                Seu navegador não suporta a tag de vídeo.
-              </video>
+                <CarouselContent>
+                  {/* VÍDEO 1 - video_r2 (PRIMEIRO) */}
+                  <CarouselItem className="md:basis-1/2 lg:basis-full">
+                    <div className="p-1">
+                      <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/20 shadow-sm bg-black/10">
+                        <video
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          controls
+                          className="w-full h-full object-cover"
+                        >
+                          <source src="/media/video_r2.mp4" type="video/mp4" />
+                          Seu navegador não suporta a tag de vídeo.
+                        </video>
+                      </div>
+                    </div>
+                  </CarouselItem>
+
+                  {/* VÍDEO 2 - video_1 */}
+                  <CarouselItem className="md:basis-1/2 lg:basis-full">
+                    <div className="p-1">
+                      <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/20 shadow-sm bg-black/10">
+                        <video
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          controls
+                          className="w-full h-full object-cover"
+                        >
+                          <source src="/media/video_1.mp4" type="video/mp4" />
+                          Seu navegador não suporta a tag de vídeo.
+                        </video>
+                      </div>
+                    </div>
+                  </CarouselItem>
+                </CarouselContent>
+
+                <CarouselPrevious className="hidden md:flex -left-2 lg:-left-4 bg-white/20 hover:bg-white/40 border-none text-white cursor-pointer" />
+                <CarouselNext className="hidden md:flex -right-2 lg:-right-4 bg-white/20 hover:bg-white/40 border-none text-white cursor-pointer" />
+              </Carousel>
             </div>
+            
+            {/* COLUNA 2: CARROSSEL DE IMAGENS (COM SETINHAS) */}
             <div className="w-full px-8 lg:px-0">
               <Carousel
                 opts={{
@@ -123,23 +164,12 @@ export default function Home() {
               >
                 <CarouselContent>
                   {[
-                    {
-                      src: "/saude.png",
-                      alt: "Responsabilidade Civil - Proteção Jurídica",
-                    },
-                    {
-                      src: "/rc_1.png",
-                      alt: "Responsabilidade Civil - Segurança Empresarial",
-                    },
-                    {
-                      src: "/vida.png",
-                      alt: "Seguro de Vida - Proteção para sua Família",
-                    },
+                    { src: "/saude.png", alt: "Seguro Saúde" },
+                    { src: "/vida.png", alt: "Seguro de Vida" },
+                    { src: "/rc_1 (1).png", alt: "Responsabilidade Civil" },
+                    { src: "/viagem.png", alt: "Seguro Viagem" },
                   ].map((image, index) => (
-                    <CarouselItem
-                      key={index}
-                      className="md:basis-1/2 lg:basis-full"
-                    >
+                    <CarouselItem key={index} className="md:basis-1/2 lg:basis-full">
                       <div className="p-1">
                         <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/20 shadow-sm bg-black/10">
                           <Image
@@ -161,7 +191,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Botão Serviços - apenas um */}
+          {/* Botão Serviços */}
           <div className="mt-10 text-center">
             <Link href="/servicos">
               <Button
@@ -176,16 +206,17 @@ export default function Home() {
       </section>
 
       {/* 4. SERVIÇOS - BADGE CLICÁVEL */}
-      <section className="py-16 container mx-auto px-4 md:px-8 max-w-5xl">
+      <section className="py-8 container mx-auto px-4 md:px-8 max-w-5xl">
         <SectionBadge href="/servicos">Serviços</SectionBadge>
 
         <div className="flex flex-col gap-4">
-          {services.slice(0, 3).map((service) => (
+          {services.map((service) => (
             <ServiceRowCard
               key={service.slug}
               title={service.title}
               description={service.introSubtitle}
               href={`/servicos/${service.slug}`}
+              className="border-2 border-primary/40 rounded-xl bg-[#F5F7FA] hover:bg-white hover:border-primary transition-all"
             />
           ))}
         </div>

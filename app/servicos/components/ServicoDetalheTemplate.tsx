@@ -26,13 +26,13 @@ export default function ServicoDetalheTemplate({ service }: { service: Service }
 
           {/* Imagem e Introdução */}
           <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-            <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-primary/5 border border-border shadow-md">
+            <div className="relative aspect-[1748/1120] rounded-2xl overflow-hidden border border-border shadow-md bg-transparent">
               <Image
                 src={service.imageSrc}
                 alt={service.title}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-contain p-4"
+                className="object-cover"
                 priority
               />
             </div>

@@ -18,9 +18,10 @@ export default function CotacaoPage() {
   });
 
   const servicos = [
-    { value: "blindagem", label: "Blindagem Patrimonial e Planejamento Sucessório (Seguro de Vida)" },
-    { value: "saude", label: "Cuidados e Saúde para Mim e Minha Família (Seguro Saúde Familiar)" },
-    { value: "negocio", label: "Proteção para o meu Negócio (Responsabilidade Civil Geral)" },
+  { value: "blindagem", label: "Blindagem Patrimonial e Planejamento Sucessório (Seguro de Vida)" },
+  { value: "saude", label: "Cuidados e Saúde para Mim e Minha Família (Seguro Saúde Familiar)" },
+  { value: "negocio", label: "Proteção para o meu Negócio (Responsabilidade Civil Geral)" },
+  { value: "viagem", label: "Proteção em Viagens Nacionais e Internacionais (Seguro Viagem)" },
   ];
 
   const handleSubmit = async (e: React.FormEvent) => {

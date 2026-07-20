@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ChevronDown, ChevronUp, MessageCircle, Send, Shield, Heart, Briefcase, Star } from "lucide-react";
+import { ChevronDown, ChevronUp, MessageCircle, Send, Shield, Heart, Briefcase, Star, Plane } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -77,6 +77,17 @@ const faqData = [
         a: "Nosso processo é 100% consultivo e personalizado. Você preenche nosso formulário informando suas necessidades básicas, nós analisamos o seu perfil de risco e agendamos um atendimento para apresentar a solução exata (sua 'palavra falada/direção'). Sem pressões, sem letras miúdas: desenhamos a apólice com o propósito de cobrir as lacunas financeiras reais da sua vida ou do seu negócio."
       }
     ]
+  },
+  {
+  id: "viagem-1",
+  category: "Seguro Viagem",
+  icon: Plane,
+  questions: [
+    {
+      q: "Quanto custa o Seguro Viagem?",
+      a: "O custo do Seguro Viagem depende de uma série de fatores, incluindo: destino da viagem, duração, idade do viajante, tipo de cobertura desejada e atividades planejadas. Nossa equipe faz uma análise personalizada para encontrar a melhor solução com o melhor custo-benefício para sua viagem."
+    }
+  ]
   }
 ];
 

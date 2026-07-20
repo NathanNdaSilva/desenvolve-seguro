@@ -46,7 +46,7 @@ export function Footer() {
                 <MessageCircle className="w-4 h-4" />
               </Link>
               <Link
-                href="mailto:timepack10@gmail.com"
+                href="mailto:rhema.corretora@gmail.com"
                 aria-label="E-mail"
                 className="p-2.5 bg-background border border-border rounded-full text-muted-foreground hover:text-primary hover:border-white hover:-translate-y-1 transition-all duration-300 shadow-sm"
               >
@@ -72,6 +72,11 @@ export function Footer() {
               <li>
                 <Link href="/servicos/responsabilidade-civil" className="hover:text-white hover:underline underline-offset-4 transition-all">
                   Responsabilidade Civil
+                </Link>
+              </li>
+              <li>
+                <Link href="/servicos/seguro-viagem" className="hover:text-white hover:underline underline-offset-4 transition-all">
+                  Seguro Viagem
                 </Link>
               </li>
             </ul>
@@ -115,8 +120,8 @@ export function Footer() {
               </li>
               <li className="pt-2 border-t border-primary-foreground/20">
                 <span className="block font-medium text-white mb-1">Contato</span>
-                <a href="mailto:timepack10@gmail.com" className="hover:text-white transition-colors">
-                  timepack10@gmail.com
+                <a href="mailto:rhema.corretora@gmail.com" className="hover:text-white transition-colors">
+                  rhema.corretora@gmail.com
                 </a>
                 <br />
                 <a href="https://wa.me/5511921081491" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">

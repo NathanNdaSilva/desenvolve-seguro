@@ -220,7 +220,7 @@ export default function PoliticaPrivacidadePage() {
           <section className="bg-primary/5 border border-primary/20 rounded-2xl p-6 md:p-8">
             <h2 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
               <Shield className="w-5 h-5 text-primary" />
-              📬 Como exercer seus direitos?
+               Como exercer seus direitos?
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
               Para exercer qualquer um dos seus direitos ou tirar dúvidas sobre o tratamento dos seus dados, 
@@ -229,8 +229,8 @@ export default function PoliticaPrivacidadePage() {
             <div className="bg-background rounded-xl p-4 border border-border space-y-2">
               <p className="text-foreground">
                 <span className="font-medium">E-mail:</span>{""}
-                <a href="mailto:timepack10@gmail.com" className="text-primary hover:underline ml-1">
-                  timepack10@gmail.com
+                <a href="mailto:rhema.corretora@gmail.com" className="text-primary hover:underline ml-1">
+                  rhema.corretora@gmail.com
                 </a>
               </p>
               <p className="text-foreground">

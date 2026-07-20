@@ -56,13 +56,14 @@ export default function ServicosPage() {
               >
                 {/* Imagem */}
                 <div className="w-full lg:w-1/2">
-                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-muted/50 border border-border shadow-md">
+                  <div className="relative aspect-[1748/1120] rounded-2xl overflow-hidden border border-border shadow-md bg-transparent">
                     <Image
                       src={service.imageSrc}
                       alt={service.title}
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="object-cover"
+                      priority
                     />
                   </div>
                 </div>
