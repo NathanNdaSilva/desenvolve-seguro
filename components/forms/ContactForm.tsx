@@ -22,14 +22,29 @@ export function ContactForm() {
     const formElement = event.currentTarget;
     const formData = new FormData(formElement);
 
-    try {
-      const result = await sendContactEmail(formData);
+    const data = {
+      nome: formData.get('nome') as string,
+      email: formData.get('email') as string,
+      telefone: formData.get('telefone') as string,
+      assunto: formData.get('assunto') as string,
+      mensagem: formData.get('mensagem') as string,
+    };
 
-      if (result && result.success) {
+    try {
+      const response = await fetch('/api/send-contato', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
         setSubmitStatus("success");
         formElement.reset();
       } else {
         setSubmitStatus("error");
+        console.error(result.error);
       }
     } catch (error) {
       console.error("Erro capturado no frontend:", error);
