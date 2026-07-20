@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface ServiceRowCardProps {
   title: string;
@@ -21,14 +22,18 @@ export function ServiceRowCard({
         <h3 className="text-2xl font-bold text-primary group-hover:text-foreground transition-colors">
           {title}
         </h3>
+
         <Link
           href={href}
-          className={cn("inline-flex items-center text-sm font-semibold hover:text-primary transition-colors",
-          className,
+          className={cn(
+            "inline-flex items-center text-sm font-semibold hover:text-primary transition-colors",
+            className
+          )}
         >
           Saiba mais <ArrowRight className="ml-2 w-4 h-4" />
         </Link>
       </div>
+
       <div className="md:w-1/2">
         <p className="text-muted-foreground text-sm leading-relaxed">
           {description}
