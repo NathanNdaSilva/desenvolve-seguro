@@ -26,15 +26,15 @@ export async function sendContactEmail(formData: FormData) {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'timepack10@gmail.com',
-        pass: 'nhwmzmyntwwguaug',
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     });
 
     // Configurar o e-mail que será enviado
     const mailOptions = {
-      from: 'timepack10@gmail.com',
-      to: 'timepack10@gmail.com',
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER,
       subject: `📩 Nova mensagem de contato - ${nome}`,
       html: `
         <h2 style="color: #1A4E78;">📩 Nova mensagem do site</h2>
